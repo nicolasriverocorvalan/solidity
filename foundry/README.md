@@ -2,4 +2,5 @@
 
 ## Commands
 * forge init --force .
-* git statu
+* forge compile
+* 
