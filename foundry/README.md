@@ -1,4 +1,5 @@
 # Foundry
+* testnet: Alchemy/Infura
 
 ## Cheat sheet
 * forge init --force .
