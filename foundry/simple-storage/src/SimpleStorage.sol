@@ -13,7 +13,8 @@ contract SimpleStorage {
 
     mapping(string => uint256) public nameToFavoriteNumber;
 
-    function store(uint256 _favoriteNumber) public virtual { // virtual for inheritance override
+    function store(uint256 _favoriteNumber) public virtual {
+        // virtual for inheritance override
         myFavoriteNumber = _favoriteNumber;
     }
 
