@@ -2,8 +2,9 @@
 pragma solidity ^0.8.18;
 
 import {PriceConverter} from "./PriceConverter.sol";
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
-error NotOwner();
+error FundMe__NotOwner();
 
 contract FundMe {
     using PriceConverter for uint256; // using our own Library, msg.value is uint256
@@ -15,8 +16,11 @@ contract FundMe {
     
     address public immutable i_owner;
 
-    constructor() {
+    AggregatorV3Interface private s_priceFeed;
+
+    constructor(address priceFeed) {
         i_owner = msg.sender;
+        s_priceFeed = AggregatorV3Interface(priceFeed);
     }
 
     function fund() public payable {
@@ -25,7 +29,7 @@ contract FundMe {
         // msg.value = number of WEI sent with the message
 
         // revert = undo any action that have been done ,and send the remaining gas back
-        require(msg.value.getConversionRate() >= MINIMUM_USD, "Not enough ETH");
+        require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, "Not enough ETH");
 
         funders.push(msg.sender);
         addressToAmountFunded[msg.sender] += msg.value;
@@ -34,7 +38,7 @@ contract FundMe {
     // modifier = keyword to add in the funtion declaration
     modifier onlyOwner { 
         // require(msg.sender == i_owner);
-        if (msg.sender != i_owner) revert NotOwner();
+        if (msg.sender != i_owner) revert FundMe__NotOwner();
         _; // execute function content
     }
     
@@ -68,4 +72,7 @@ contract FundMe {
         fund();
     }
 
+    function getVersion() public view returns (uint256){
+        return s_priceFeed.version();
+    }
 }
