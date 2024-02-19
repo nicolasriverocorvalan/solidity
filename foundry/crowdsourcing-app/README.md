@@ -1,7 +1,9 @@
 ## Notes
 * HelperConfig
-  - Deploy mocks when we are in a local Anvil chain
-  - Keep track of contract address across different chains
+  - Deploy mocks when we are in a local Anvil chain.
+    1. Deploy the mock contract.
+    2. Return the mock address.
+  - Keep track of contract address across different chains.
 
 ## Cheat sheet
 * https://github.com/smartcontractkit/chainlink-brownie-contracts
