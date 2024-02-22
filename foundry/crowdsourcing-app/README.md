@@ -22,3 +22,6 @@
    - Testing our code on a simulated real env.
 4. Staging
    - Testing our code in a real env that is not prod.
+
+## Testing pattern
+* Arrange - Act - Assert
