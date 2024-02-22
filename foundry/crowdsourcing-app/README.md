@@ -17,6 +17,7 @@
   - forge inspect FundMe storageLayout
   - cast storage [contract]
 * forge install ChainAccelOrg/foundry-devops --no-commit
+* make deploy ARGS="--network sepolia"
 
 ## Testing
 1. Unit
