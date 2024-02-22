@@ -7,3 +7,6 @@
 [submodule "foundry/crowdsourcing-app/lib/chainlink-brownie-contracts"]
 	path = foundry/crowdsourcing-app/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "foundry/crowdsourcing-app/lib/foundry-devops"]
+	path = foundry/crowdsourcing-app/lib/foundry-devops
+	url = https://github.com/ChainAccelOrg/foundry-devops

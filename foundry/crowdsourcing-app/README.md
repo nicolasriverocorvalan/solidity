@@ -10,12 +10,13 @@
 * forge install smartcontractkit/chainlink-brownie-contracts@0.8.0 --no-commit
 * forge test -vv
 * forge script script/DeployFundMe.s.sol
-* forge test --match-test testPriceFeedVersionIsAccurate -vvv --rpc-url $SEPOLIA_RPC_URL
+* forge test --match-test testPriceFeedVersionIsAccurate -vvv --rpc-url $SEPOLIA_RPC_URLx|
 * forge coverage --rpc-url $SEPOLIA_RPC_URL
 * forge snapshot --match-test testWithdrawFromMultipleFunders (gas-snapshot)
 * Storage:
   - forge inspect FundMe storageLayout
   - cast storage [contract]
+* forge install ChainAccelOrg/foundry-devops --no-commit
 
 ## Testing
 1. Unit
