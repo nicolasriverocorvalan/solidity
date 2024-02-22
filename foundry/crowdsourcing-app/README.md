@@ -11,7 +11,8 @@
 * forge test -vv
 * forge script script/DeployFundMe.s.sol
 * forge test --match-test testPriceFeedVersionIsAccurate -vvv --rpc-url $SEPOLIA_RPC_URL
-* forge coverage --rpc-url $SEPOLIA_RPC_URL 
+* forge coverage --rpc-url $SEPOLIA_RPC_URL
+* forge snapshot --match-test testWithdrawFromMultipleFunders (gas-snapshot)
 
 ## Testing
 1. Unit
@@ -24,4 +25,10 @@
    - Testing our code in a real env that is not prod.
 
 ## Testing pattern
-* Arrange - Act - Assert
+1. Arrange: setup the test.
+2. Act: action we want to test.
+3. Assert.
+
+## Chisel
+
+Allows us to write Solidity in our terminal and execute it line by line.
