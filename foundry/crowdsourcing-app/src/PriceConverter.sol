@@ -10,8 +10,8 @@ library PriceConverter {
         // Sepolia ETH / USD Address = 0x694AA1769357215DE4FAC081bf1f309aDC325306
         // https://docs.chain.link/data-feeds/price-feeds/addresses
 
-        (, int256 price, , , ) = priceFeed.latestRoundData();
-        
+        (, int256 price,,,) = priceFeed.latestRoundData();
+
         // ETH/USD rate in 18 digit, price 8 decimals
         return uint256(price * 1e10);
     }
