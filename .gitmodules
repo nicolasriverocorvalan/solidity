@@ -10,3 +10,12 @@
 [submodule "foundry/crowdsourcing-app/lib/foundry-devops"]
 	path = foundry/crowdsourcing-app/lib/foundry-devops
 	url = https://github.com/ChainAccelOrg/foundry-devops
+[submodule "3-foundry/2-crowdsourcing-app/lib/foundry-devops"]
+	path = 3-foundry/2-crowdsourcing-app/lib/foundry-devops
+	url = https://github.com/cyfrin/foundry-devops
+[submodule "3-foundry/2-crowdsourcing-app/lib/chainlink-brownie-contracts"]
+	path = 3-foundry/2-crowdsourcing-app/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "3-foundry/2-crowdsourcing-app/lib/forge-std"]
+	path = 3-foundry/2-crowdsourcing-app/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
