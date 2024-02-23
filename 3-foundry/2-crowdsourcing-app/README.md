@@ -18,6 +18,7 @@
   - cast storage [contract]
 * forge install ChainAccelOrg/foundry-devops --no-commit
 * make deploy ARGS="--network sepolia"
+* cast sig "fund()" (get function selector)
 
 ## Testing
 1. Unit
