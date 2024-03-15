@@ -19,3 +19,15 @@
 [submodule "3-foundry/2-crowdsourcing-app/lib/forge-std"]
 	path = 3-foundry/2-crowdsourcing-app/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "3-foundry/3-lottery/lib/foundry-devops"]
+	path = 3-foundry/3-lottery/lib/foundry-devops
+	url = https://github.com/Cyfrin/foundry-devops
+[submodule "3-foundry/3-lottery/lib/chainlink-brownie-contracts"]
+	path = 3-foundry/3-lottery/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "3-foundry/3-lottery/lib/forge-std"]
+	path = 3-foundry/3-lottery/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "3-foundry/3-lottery/lib/solmate"]
+	path = 3-foundry/3-lottery/lib/solmate
+	url = https://github.com/transmissions11/solmate
