@@ -36,3 +36,5 @@ This code is to create a provably random smart contract lottery.
 ## Cheat sheet
 
 * `forge install smartcontractkit/chainlink-brownie-contracts@0.6.1 --no-commit`
+* `forge script script/Interactions.s.sol:FundSubscription --rpc-url $SEPOLIA_RPC_URL --private-key $SEPOLIA_PRIVATE_KEY --broadcast`
+* `forge coverage --report debug > coverage.txt`

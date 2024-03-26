@@ -129,7 +129,7 @@ contract RaffleTest is StdCheats, Test {
         assert(upkeepNeeded == false);
     }
 
-    // Can you implement this?
+    //implement this
     function testCheckUpkeepReturnsFalseIfEnoughTimeHasntPassed() public {}
 
     function testCheckUpkeepReturnsTrueWhenParametersGood() public {
@@ -158,7 +158,7 @@ contract RaffleTest is StdCheats, Test {
         vm.roll(block.number + 1);
 
         // Act / Assert
-        // It doesnt revert
+        // It doesn't revert
         raffle.performUpkeep("");
     }
 
