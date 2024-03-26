@@ -2,13 +2,13 @@
 pragma solidity ^0.8.19;
 
 import {Script} from "forge-std/Script.sol";
-import {HelperConfig} from "./HelperConfig.s.sol";
 import {Raffle} from "../src/Raffle.sol";
+import {HelperConfig} from "./HelperConfig.s.sol";
 import {AddConsumer, CreateSubscription, FundSubscription} from "./Interactions.s.sol";
 
 contract DeployRaffle is Script {
     function run() external returns (Raffle, HelperConfig) {
-        HelperConfig helperConfig = new HelperConfig(); // This comes with our mocks!
+        HelperConfig helperConfig = new HelperConfig(); // This comes with our mocks
         AddConsumer addConsumer = new AddConsumer();
         (
             uint64 subscriptionId,
@@ -19,22 +19,14 @@ contract DeployRaffle is Script {
             address vrfCoordinatorV2,
             address link,
             uint256 deployerKey
-        ) = helperConfig.activeNetworkConfig();
+        ) = helperConfig.activeNetworkConfig(); // NetworkConfig config = helperConfig.activeNetworkConfig();
 
         if (subscriptionId == 0) {
             CreateSubscription createSubscription = new CreateSubscription();
-            (subscriptionId, vrfCoordinatorV2) = createSubscription.createSubscription(
-                vrfCoordinatorV2,
-                deployerKey
-            );
+            (subscriptionId, vrfCoordinatorV2) = createSubscription.createSubscription(vrfCoordinatorV2,deployerKey);
 
             FundSubscription fundSubscription = new FundSubscription();
-            fundSubscription.fundSubscription(
-                vrfCoordinatorV2,
-                subscriptionId,
-                link,
-                deployerKey
-            );
+            fundSubscription.fundSubscription(vrfCoordinatorV2,subscriptionId,link,deployerKey);
         }
 
         vm.startBroadcast(deployerKey);
