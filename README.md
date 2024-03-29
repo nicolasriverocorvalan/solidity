@@ -62,3 +62,15 @@
 - private
 - view & pure functions
 
+
+## Ethereum Request for Comments (ERC)
+
+### ERC-20
+
+* ERC-20 Token Standard: It´s an smart contract that represent a token.
+* Governance tokens.
+* Secure an underlying network.
+* Create a synthetic asset.
+* +
+
+
