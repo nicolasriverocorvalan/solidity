@@ -10,29 +10,6 @@ This code is to create a provably random smart contract lottery.
    1. VRF (Verifiable Random Function) -> randomness.
    2. Automation -> time based trigger.
 
-## Order of layout
-
-### Layout of Contract
-- version
-- imports
-- errors
-- interfaces, libraries, contracts
-- Type declarations
-- State variables
-- Events
-- Modifiers
-- Functions
-
-### Layout of Functions:
-- constructor
-- receive function (if exists)
-- fallback function (if exists)
-- external
-- public
-- internal
-- private
-- view & pure functions
-
 ## Cheat sheet
 
 * `forge install smartcontractkit/chainlink-brownie-contracts@0.6.1 --no-commit`
