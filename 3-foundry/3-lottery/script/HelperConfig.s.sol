@@ -44,7 +44,7 @@ contract HelperConfig is Script {
             callbackGasLimit: 500000, // 500,000 gas
             vrfCoordinatorV2: 0x271682DEB8C4E0901D1a1550aD2e64D568E69909,
             link: 0x514910771AF9Ca656af840dff83E8264EcF986CA,
-            deployerKey: vm.envUint("PRIVATE_KEY")
+            deployerKey: vm.envUint("SEPOLIA_PRIVATE_KEY")
         });
     }
 
