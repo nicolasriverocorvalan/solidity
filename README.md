@@ -72,4 +72,12 @@
 * Create a synthetic asset.
 * +
 
+### ERC-721 (NFT - Non-Fungible Token)
 
+* Token URI.
+* Metadata: an endpoint return the metadata.
+
+#### IPFS
+
+* Decentralized storage (nodes optionally choose what to pin)
+* our code -> hash it
