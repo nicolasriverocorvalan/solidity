@@ -72,4 +72,7 @@
 * Create a synthetic asset.
 * +
 
+### ERC-721 (NFT - Non-Fungible Token)
 
+* Token URI
+* Metadata

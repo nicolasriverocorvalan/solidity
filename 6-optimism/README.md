@@ -7,8 +7,8 @@
 * Burning an NFT: is an irreversible action, and once burned, the NFT cannot be recovered.
 * Superchain Faucet: free testnet ETH.
 * OP Goerli: a public testnet where you can conduct further testing.
-* ERC-721 Standard: interface for NFT on the ETH blockchain. Adds support for storing and managing token metadata (URI0 Uniform Resource Identifier).
-* ERC-2981 Standard: Is an EIP (Ethereum Improvement Proposal) that introduce a standard interface for NFTs with royalty support. Represents a mechanism for creators to recieve royalties whenever their NFT are sold or traded on a marketplace, alowing contracts to signal a royalty amount to be paid to the NFT creator or right holder every time the NFT is sold or re-sold. The royality payment must be voluntary, as executing transfers between wallets does not always imply a sale ocurred.
+* ERC-721 Standard: interface for NFT on the ETH blockchain. Adds support for storing and managing token metadata (URI - Uniform Resource Identifier).
+* ERC-2981 Standard: Is an EIP (Ethereum Improvement Proposal) that introduce a standard interface for NFTs with royalty support. Represents a mechanism for creators to receive royalties whenever their NFT are sold or traded on a marketplace, allowing contracts to signal a royalty amount to be paid to the NFT creator or right holder every time the NFT is sold or re-sold. The royalty payment must be voluntary, as executing transfers between wallets does not always imply a sale ocurred.
 
 ## Optimism Starter toolkit
 
@@ -25,7 +25,7 @@ Open-source project that provides a template and pre-configured env that streaml
 * contracts/src: front-end code
 * contracts/test: test files
 * contracts/script: additional Solidity scripts needed. Scripts run on the Foundry EVM backend (dry-run capabilities)
-* package.json: this file is part of the Node.js project and manages dependencies, scripts, and project metadata. It specifies the requeried packages and scripts used in your project.
+* package.json: this file is part of the Node.js project and manages dependencies, scripts, and project metadata. It specifies the required packages and scripts used in your project.
 
 ### ERC-2981
 
