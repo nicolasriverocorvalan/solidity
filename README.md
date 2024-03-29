@@ -62,7 +62,6 @@
 - private
 - view & pure functions
 
-
 ## Ethereum Request for Comments (ERC)
 
 ### ERC-20
