@@ -74,5 +74,12 @@
 
 ### ERC-721 (NFT - Non-Fungible Token)
 
-* Token URI
-* Metadata
+* Token URI.
+* Metadata: an endpoint return the metadata.
+
+#### IPFS
+
+* Decentralized storage (nodes optionally choose what to pin)
+* our code -> hash it
+* `https://ipfs.io/ipfs/QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 → http://localhost:8080/ipfs/QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 → http://bafybeicdlctvdhgvhnu5xqjm6tvjzaw3oyllq77deguvllb52hzu3ur76m.ipfs.localhost:8080/`
+* 
