@@ -18,7 +18,7 @@ contract BasicNftTest is Test {
     }
 
     function testNameIsCorrect() public view {
-        string memory expected = "Dogie";
+        string memory expected = "Elbarto";
         string memory actualName = basicNft.name();
 
         assertEq(keccak256(bytes(actualName)), keccak256(bytes(expected)));
