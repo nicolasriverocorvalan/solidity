@@ -1,5 +1,6 @@
 ## Cheat sheet
 * `forge install OpenZeppelin/openzeppelin-contracts --no-commit`
+* `forge install ChainAccelOrg/foundry-devops --no-commit`
 
 ## IPFS
 
