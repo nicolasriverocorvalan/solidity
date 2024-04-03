@@ -8,7 +8,7 @@ import {BasicNft} from "../src/BasicNft.sol";
 
 
 contract MintBasicNft is Script {
-    string public constant PUG_URI = "https://ipfs.io/ipfs/QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8?filename=elbarto2.png";
+    string public constant PUG_URI = "https://ipfs.io/ipfs/QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8?filename=elbarto.png";
 
     uint256 deployerKey;
 
