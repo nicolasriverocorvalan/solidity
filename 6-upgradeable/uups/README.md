@@ -2,6 +2,7 @@
 
 * `forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit`
 * `forge install OpenZeppelin/openzeppelin-contracts --no-commit`
+* `forge install chainaccelorg/foundry-devops --no-commit`
 
 ## Notes
 
