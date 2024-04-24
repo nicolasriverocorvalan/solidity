@@ -46,3 +46,6 @@
 [submodule "5-nft/lib/foundry-devops"]
 	path = 5-nft/lib/foundry-devops
 	url = https://github.com/ChainAccelOrg/foundry-devops
+[submodule "6-upgradeable/uups/lib/forge-std"]
+	path = 6-upgradeable/uups/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
