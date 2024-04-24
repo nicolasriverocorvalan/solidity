@@ -48,3 +48,7 @@
 ## Delegate Call vs Call Function
 
 Similar to a call function, 'delegate call' is a fundamental feature of Ethereum. However, they work a bit differently. Think of delegate call as a call option that allows one contract to borrow a function from another contract.
+
+## Notes
+
+* EIP-1967: Standard Proxy Storage Slots. Standardize where proxies store the address of the logic contract they delegate to, as well as other proxy-specific information.
