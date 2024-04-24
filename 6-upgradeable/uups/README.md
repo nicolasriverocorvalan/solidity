@@ -1,66 +1,10 @@
-## Foundry
+## Cheat commands
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+* `forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit`
 
-Foundry consists of:
+## Notes
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+* Since proxied contracts do not make use of a constructor, it´s common to move constructor logic to an external initializer function, usually called `initialize`. It then becomes necessary to protect this initializer function so it can only be called once.
+* Storage is stored in the proxy, NOT the implementation.
+* Proxy (borrowing functions) -> implementation (but NOT use the constructor).
+* Proxy -> 1. deploy implementation -> 2. call some "initializer" function.
