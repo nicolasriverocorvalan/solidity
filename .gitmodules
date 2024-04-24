@@ -52,3 +52,6 @@
 [submodule "6-upgradeable/uups/lib/openzeppelin-contracts-upgradeable"]
 	path = 6-upgradeable/uups/lib/openzeppelin-contracts-upgradeable
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable
+[submodule "6-upgradeable/uups/lib/openzeppelin-contracts"]
+	path = 6-upgradeable/uups/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts

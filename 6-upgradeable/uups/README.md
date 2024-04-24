@@ -1,6 +1,7 @@
 ## Cheat commands
 
 * `forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit`
+* `forge install OpenZeppelin/openzeppelin-contracts --no-commit`
 
 ## Notes
 
