@@ -40,6 +40,10 @@
 * AdminOnly Upgrade functions are in the implementation contracts instead of the proxy.
 * Gas saver.
 
+#### Universal Upgradeable Proxy Standard (UUPS)
+
+In UUPS proxies the upgrade is handled by the implementation, and can eventually be removed. Transparent proxies, on the other hand, include the upgrade and admin logic in the proxy itself. This means `TransparentUpgradeableProxy` is more expensive to deploy than what is possible with UUPS proxies.
+
 ### Diamond pattern
 
 * Allows multiple implementation contracts.
