@@ -42,6 +42,7 @@ contract MyGovernorTest is Test {
         timelock.grantRole(proposerRole, address(governor));
         timelock.grantRole(executorRole, address(0));
         timelock.revokeRole(adminRole, msg.sender);
+        vm.stopPrank();
 
         box = new Box();
         box.transferOwnership(address(timelock));
@@ -53,12 +54,13 @@ contract MyGovernorTest is Test {
     }
 
     function testGovernanceUpdatesBox() public {
-        uint256 valueToStore = 777;
+        uint256 valueToStore = 123;
         string memory description = "Store 1 in Box";
         bytes memory encodedFunctionCall = abi.encodeWithSignature("store(uint256)", valueToStore);
         addressesToCall.push(address(box));
         values.push(0);
         functionCalls.push(encodedFunctionCall);
+
         // 1. Propose to the DAO
         uint256 proposalId = governor.propose(addressesToCall, values, functionCalls, description);
 
@@ -72,7 +74,7 @@ contract MyGovernorTest is Test {
         console.log("Proposal State:", uint256(governor.state(proposalId)));
 
         // 2. Vote
-        string memory reason = "I like a do da cha cha";
+        string memory reason = "I like it";
         // 0 = Against, 1 = For, 2 = Abstain for this example
         uint8 voteWay = 1;
         vm.prank(VOTER);
@@ -92,6 +94,7 @@ contract MyGovernorTest is Test {
         // 4. Execute
         governor.execute(addressesToCall, values, functionCalls, descriptionHash);
 
-        assert(box.retrieve() == valueToStore);
+        console.log("Box value:", box.getNumber());
+        assert(box.getNumber() == valueToStore);
     }
 }
