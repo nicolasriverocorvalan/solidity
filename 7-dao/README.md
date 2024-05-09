@@ -19,4 +19,6 @@
 * Every transaction that the DAO wants to send has to be voted on.
 * We will use ERC20 tokens for voting.
 
- 
+## Cheat sheet
+* `forge test --mt testCantUpdateBoxWithoutGovernance`
+* `forge test --mt testGovernanceUpdatesBox -vv`
