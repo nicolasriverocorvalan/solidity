@@ -58,3 +58,9 @@
 [submodule "6-upgradeable/uups/lib/foundry-devops"]
 	path = 6-upgradeable/uups/lib/foundry-devops
 	url = https://github.com/chainaccelorg/foundry-devops
+[submodule "7-dao/lib/forge-std"]
+	path = 7-dao/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "7-dao/lib/openzeppelin-contracts"]
+	path = 7-dao/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
