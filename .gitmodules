@@ -64,3 +64,15 @@
 [submodule "7-dao/lib/openzeppelin-contracts"]
 	path = 7-dao/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "8-defi/lib/foundry-devops"]
+	path = 8-defi/lib/foundry-devops
+	url = https://github.com/cyfrin/foundry-devops
+[submodule "8-defi/lib/chainlink-brownie-contracts"]
+	path = 8-defi/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
+[submodule "8-defi/lib/forge-std"]
+	path = 8-defi/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "8-defi/lib/openzeppelin-contracts"]
+	path = 8-defi/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
