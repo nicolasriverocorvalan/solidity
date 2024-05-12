@@ -6,7 +6,7 @@ With Optimistic rollups, we “optimistically believe” that these transactions
 
 ## Arbitrum
 
-## Chainlink L2 Sequencer Health Flag
+### Chainlink L2 Sequencer Health Flag
 
 Consists of three actors:
 
