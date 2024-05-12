@@ -1,66 +1,21 @@
-## Foundry
+# Layer-2 rollups
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Layer-2 rollups consist of Optimistic rollups and ZK-rollups. Both are “true layer-2 solutions”, which means they are able to execute a large volume of transactions at high speed and low cost and then verify this bundle of transactions on layer 1. 
 
-Foundry consists of:
+With Optimistic rollups, we “optimistically believe” that these transactions really happened on layer 2. These rollups are “optimistic” because the bundles are considered “innocent until proven guilty” by fraud proofs and are optimistically assumed to be correct when posted to layer 1 unless a challenge has been submitted during the 7-day challenge period.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Arbitrum
 
-## Documentation
+## Chainlink L2 Sequencer Health Flag
 
-https://book.getfoundry.sh/
+Consists of three actors:
 
-## Usage
+1. Chainlink Cluster (a group of validator nodes)—this executes the OCR Job every heartbeat “T” (the minimum frequency at which the Chainlink feed is configured to be updated).
+2. The actual OCR feed reporting the Sequencer status—this could be used for external users on layer 1 to check OR protocol (e.g. Arbitrum) status.
+3. Validator: this gets triggered by the OCR feed and executes the raise or lower flag action if the current answer is different from the previous one.
 
-### Build
+### Notes
 
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+* `https://bridge.arbitrum.io/`
+* `https://sepolia.arbiscan.io/`
+* `forge test --mt testGetPrice -vv --rpc-url $ARBITRUM_SEPOLIA_RPC_URL`

@@ -67,3 +67,6 @@
 [submodule "arbitrum/lib/forge-std"]
 	path = arbitrum/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "arbitrum/lib/chainlink-brownie-contracts"]
+	path = arbitrum/lib/chainlink-brownie-contracts
+	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
