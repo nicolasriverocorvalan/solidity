@@ -1,4 +1,4 @@
-# Solidity
+# Solidity Cheat Sheet
 
 ## GAS - Ethereum Improvement Proposals (EIP) 1559
 
@@ -19,6 +19,8 @@
 * value: amount of wei to send.
 * data: what to send to the TO address.
 * v, r, s: components of tx signature.
+
+[Transaction types](https://docs.zksync.io/zk-stack/concepts/transaction-lifecycle#transaction-types)
 
 ## Notes
 * Blockchain Oracle: Any device that interacts with the oof-chain world to provide external data or computation to smart contracts.
@@ -81,3 +83,9 @@
 
 * Decentralized storage (nodes optionally choose what to pin)
 * our code -> hash it
+
+## Testnet faucets
+
+* [Google](https://cloud.google.com/application/web3/faucet/ethereum/sepolia)
+
+* [Chainlink](https://faucets.chain.link/)
