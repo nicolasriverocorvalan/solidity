@@ -17,6 +17,7 @@ contract HelperConfig is Script {
     uint256 constant ETH_SEPOLIA_CHAIN_ID = 11155111;
     uint256 constant ZKSYNC_SEPOLIA_CHAIN_ID= 300;
     address constant BURNER_WALLET = 0x64Dd9D94818A2CA2e95c31B084aeF0CC92e86dA2; //my wallet
+    address constant FOUNDRY_DEFAULT_ACCOUNT = 0x1804c8AB1F12E6bbf3894d4083f33e07309d1f38; // Foundry Base.sol
 
     NetworkConfig public localNetworkConfig;
     mapping(uint256 chainId => NetworkConfig) public NetworkConfigs;
@@ -25,11 +26,11 @@ contract HelperConfig is Script {
         NetworkConfigs[ETH_SEPOLIA_CHAIN_ID] = getEthSepoliaConfig(); 
     }
 
-    function getConfig() public view returns (NetworkConfig memory) {
+    function getConfig() public returns (NetworkConfig memory) {
         return getConfigByChainId(block.chainid);
     }
 
-    function getConfigByChainId(uint256 chainId) public view returns (NetworkConfig memory) {
+    function getConfigByChainId(uint256 chainId) public returns (NetworkConfig memory) {
         if(chainId == LOCAL_CHAIN_ID){
             return getOrCreateAnvilEthConfig();
         } else if(NetworkConfigs[chainId].account != address(0)) {
@@ -48,11 +49,12 @@ contract HelperConfig is Script {
         return NetworkConfig({entryPoint: address(0), account: BURNER_WALLET});
     }
 
-    function getOrCreateAnvilEthConfig() public view returns (NetworkConfig memory) {
+    function getOrCreateAnvilEthConfig() public returns (NetworkConfig memory) {
         if(localNetworkConfig.account != address(0)){
             return localNetworkConfig;
         }
 
+        localNetworkConfig = NetworkConfig({entryPoint: address(0), account: FOUNDRY_DEFAULT_ACCOUNT});
         return localNetworkConfig;
     }
 }

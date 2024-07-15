@@ -6,7 +6,7 @@ import {Script} from "forge-std/Script.sol";
 import {MinimalAccount} from "../src/ethereum/MinimalAccount.sol";
 import {HelperConfig} from "./HelperConfig.s.sol";
 
-contract DeployMininal is Script {
+contract DeployMinimal is Script {
     function run() public {
 
     }
