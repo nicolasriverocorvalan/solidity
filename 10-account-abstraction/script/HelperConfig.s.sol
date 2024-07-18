@@ -56,10 +56,11 @@ contract HelperConfig is Script {
             return localNetworkConfig;
         }
 
-        console2.log("Deploying EntryPoint mock...");
+        console2.log("Deploying mocks...");
         vm.startBroadcast(ANVIL_DEFAULT_ACCOUNT);
         EntryPoint entryPoint = new EntryPoint();
         vm.stopBroadcast();
+        console2.log("Mocks deployed!");
 
         localNetworkConfig = NetworkConfig({entryPoint: address(entryPoint), account: ANVIL_DEFAULT_ACCOUNT});
         return localNetworkConfig;
