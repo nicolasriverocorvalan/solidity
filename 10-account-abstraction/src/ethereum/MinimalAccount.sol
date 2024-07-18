@@ -56,14 +56,15 @@ contract MinimalAccount is IAccount, Ownable{
     function validateSignature(PackedUserOperation calldata userOp,bytes32 userOpHash) internal view returns (uint256 validationData){
         // Validate the signature
         // userOpHash -> EIP-191 version of the signed hash
-        bytes32 EthSignedMessageHash = MessageHashUtils.toEthSignedMessageHash(userOpHash);
-        address signer = ECDSA.recover(EthSignedMessageHash, userOp.signature); // returns the address that signed the message
+        bytes32 ethSignedMessageHash = MessageHashUtils.toEthSignedMessageHash(userOpHash);
+        address signer = ECDSA.recover(ethSignedMessageHash, userOp.signature); // returns the address that signed the message
 
-        if(signer != msg.sender){
+        if(signer != owner()){
             return SIG_VALIDATION_FAILED; //1
         }
         return SIG_VALIDATION_SUCCESS; //0
     }
+
 
     function payPreFund(uint256 missingAccountFunds) internal{
         // Payback the money to the entry point
