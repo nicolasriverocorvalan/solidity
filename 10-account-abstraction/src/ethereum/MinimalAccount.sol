@@ -65,7 +65,6 @@ contract MinimalAccount is IAccount, Ownable{
         return SIG_VALIDATION_SUCCESS; //0
     }
 
-
     function payPreFund(uint256 missingAccountFunds) internal{
         // Payback the money to the entry point
         if(missingAccountFunds > 0){
