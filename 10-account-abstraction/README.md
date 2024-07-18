@@ -41,3 +41,11 @@ zkSync integrates AA directly into its codebase, enabling seamless transaction h
 1. `Authentication`: users can sign a piece of data to prove ownership of an Ethereum address, useful for login systems in decentralized applications (dApps).
 2. `Off-chain agreements`: parties can sign agreements off-chain, saving transaction costs and only using the blockchain for dispute resolution or final settlement.
 3. `Meta-transactions`: users can sign transactions that are executed by another party, who pays for the gas fees. This is particularly useful for improving user experience in dApps by removing the need for users to hold ETH for transaction fees.
+
+
+## Debugging cheat sheet
+
+* `forge test --debug testEntryPointCanExecuteCommands -vvv`
+* `shift+G`: jump to the error.
+* `k`: previous op.
+

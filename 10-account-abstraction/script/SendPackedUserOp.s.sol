@@ -13,11 +13,12 @@ contract SendPackedUserOp is Script {
 
     function run() public {}
 
-    function generateSignedPackedUserOperation(bytes memory _callData, HelperConfig.NetworkConfig memory _networkConfig) public view returns (PackedUserOperation memory) {
+    function generateSignedPackedUserOperation(bytes memory _callData, HelperConfig.NetworkConfig memory _networkConfig, address _minimalAccount) public view returns (PackedUserOperation memory) {
         
         //1. generate the unsigned data
-        uint256 nonce = vm.getNonce(_networkConfig.account); //sender's nonce
-        PackedUserOperation memory userOp = generateUnsignedPackedUserOperation(_callData, _networkConfig.account, nonce);
+        // vm.getNonce(_minimalAccount) is the next nonce expected by the account, and thus, subtracting 1 retrieves the current nonce.
+        uint256 nonce = vm.getNonce(_minimalAccount) - 1; //sender's nonce
+        PackedUserOperation memory userOp = generateUnsignedPackedUserOperation(_callData, _minimalAccount, nonce);
 
         //2. get the userOP hash
         bytes32 userOpHash = IEntryPoint(_networkConfig.entryPoint).getUserOpHash(userOp);
