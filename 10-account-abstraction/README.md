@@ -1,7 +1,15 @@
 # Account Abstraction (AA)
 
+Account abstraction allows us to define anything that can validate a transaction, not just a private key (such as a Google session key, etc.). All we need to do is code a smart contract that specifies what can sign the transactions. Once deployed, when we want to send an account transaction, we first sign the data and send it to a group of `alt-mempool` nodes. These nodes will combine everything into a single user operation and call the `handle ops` function on the `entry point` contract. This contract will then perform extensive validation and, if it checks out, will call your account, which will, in turn, interact with the DApps you’re working with, etc.
+
+You can sign and send transactions without paying any gas if you have set up a paymaster where someone else covers the gas fees. You can code any type of validation into your account, such as using your Google session keys to sign transactions, setting a spending limit, etc. Essentially, you can code any rule you want into your account.
+
+In this code, a minimal account was built using account abstraction. The main function that needed to be implemented correctly was `validateUserOp`. Instead of sending a regular transaction object to the blockchain, those `alt-mempool` nodes send a user operation to the `entryPoint.sol` contract, which will call our minimal contract and call the custom logic that we built for your `validateUserOp`. If the transaction and associated signatures (`validateSignature`) are valid, it will then `execute` the transaction and perform the desired actions.
+
+Basic signature validation was implemented, and a script was written to `generateSignedUserOperation` + `generateUnsignedUserOperation` data, and send the `handleOps` transaction directly to the blockchain.
+
+
 * [EIP-4337 Account Abstraction Using Alt Mempool](https://eips.ethereum.org/EIPS/eip-4337)
-* Deploy a smart contract that defines "what" can sign a transaction.
 * `Ethereum` implements account abstraction using a smart contract called [EntryPoint.sol](https://github.com/eth-infinitism/account-abstraction/blob/develop/contracts/core/EntryPoint.sol). This contract acts as a gateway for handling user operations and transactions in a more flexible manner.
 * [EIP-4337 entrypoint definition](https://eips.ethereum.org/EIPS/eip-4337#entrypoint-definition)
 * `zkSync` has account abstraction natively integrated into its codebase. This allows for seamless handling of transactions and operations without the need for additional contracts.
@@ -48,4 +56,3 @@ zkSync integrates AA directly into its codebase, enabling seamless transaction h
 * `forge test --debug testEntryPointCanExecuteCommands -vvv`
 * `shift+G`: jump to the error.
 * `k`: previous op.
-
