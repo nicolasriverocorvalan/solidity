@@ -86,5 +86,5 @@
 	path = 10-account-abstraction/lib/foundry-devops
 	url = https://github.com/cyfrin/foundry-devops
 [submodule "08-Airdrop-and-signatures/lib/forge-std"]
-	path = 08-Airdrop-and-signatures/lib/forge-std
+	path = 08-airdrop-and-signatures/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
