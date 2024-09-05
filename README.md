@@ -79,7 +79,7 @@
 * Token URI.
 * Metadata: an endpoint return the metadata.
 
-#### IPFS
+### IPFS
 
 * Decentralized storage (nodes optionally choose what to pin)
 * our code -> hash it
