@@ -1,5 +1,66 @@
-# Airdrop and signatures
+## Foundry
 
-An airdrop occurs when a token development team distributes tokens or allows people to claim them. These tokens can be of various types, including ERC-20, ERC-1155 (multi-token contracts), or ERC-721 (NFTs).
+**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
-Tokens are usually given for free, with eligibility criteria such as contributing to the project's GitHub repository or participating in the community. This process helps to _bootstrap the project_ by distributing tokens to a **list of eligible addresses**.
+Foundry consists of:
+
+-   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
+-   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
+-   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
+-   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+
+## Documentation
+
+https://book.getfoundry.sh/
+
+## Usage
+
+### Build
+
+```shell
+$ forge build
+```
+
+### Test
+
+```shell
+$ forge test
+```
+
+### Format
+
+```shell
+$ forge fmt
+```
+
+### Gas Snapshots
+
+```shell
+$ forge snapshot
+```
+
+### Anvil
+
+```shell
+$ anvil
+```
+
+### Deploy
+
+```shell
+$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```
+
+### Cast
+
+```shell
+$ cast <subcommand>
+```
+
+### Help
+
+```shell
+$ forge --help
+$ anvil --help
+$ cast --help
+```
