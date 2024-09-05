@@ -88,3 +88,6 @@
 [submodule "08-Airdrop-and-signatures/lib/forge-std"]
 	path = 08-airdrop-and-signatures/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "08-airdrop-and-signatures/lib/openzeppelin-contracts"]
+	path = 08-airdrop-and-signatures/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
