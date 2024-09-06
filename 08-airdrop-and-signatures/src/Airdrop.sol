@@ -5,10 +5,7 @@ pragma solidity ^0.8.24;
 import {IERC20, SafeERC20} from "openzeppelin-contracts/contracts/token/ERC20/utils/SafeERC20.sol";
 import {MerkleProof} from "openzeppelin-contracts/contracts/utils/cryptography/MerkleProof.sol";
 
-contract MerkleAirdrop {
-    // some list of addresses
-    // allow someone in the list to claim tokens
-
+contract Airdrop {
     using SafeERC20 for IERC20;
 
     error MerkleAirdrop__InvalidProof();

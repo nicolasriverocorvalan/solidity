@@ -58,5 +58,5 @@ Merkle trees are used in `rollups` to verify state changes and transaction order
 forge script script/MerkleInputGenerator.s.sol:MerkleInputGenerator -vvvv
 
 ## generate Merkle tree
-forge script script/BakeMerkle.s.sol:BakeMerkle -vvvv
+forge script script/GenerateMerkle.s.sol:GenerateMerkle -vvvv
 ```

@@ -9,7 +9,7 @@ import {Merkle} from "murky/src/Merkle.sol";
 import {ScriptHelper} from "murky/script/common/ScriptHelper.sol";
 
 
-contract BakeMerkle is Script, ScriptHelper {
+contract GenerateMerkle is Script, ScriptHelper {
     // enables json cheatcodes for string manipulation
     using stdJson for string;
 
