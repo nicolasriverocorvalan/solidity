@@ -1,4 +1,4 @@
-# Airdrop and signatures
+# Airdrop and Signatures
 
 An airdrop happens when a token development team distributes tokens or allows people to claim them. These tokens can be of different types, such as ERC-20, ERC-1155, or ERC-721.
 
@@ -60,3 +60,4 @@ forge script script/MerkleInputGenerator.s.sol:MerkleInputGenerator -vvvv
 ## generate Merkle tree
 forge script script/GenerateMerkle.s.sol:GenerateMerkle -vvvv
 ```
+

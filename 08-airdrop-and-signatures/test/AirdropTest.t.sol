@@ -5,6 +5,7 @@ pragma solidity ^0.8.24;
 import {Test, console} from "forge-std/test.sol";
 import {Airdrop} from "../src/Airdrop.sol";
 import {ElBarto} from "../src/ElBarto.sol";
+import {DeployAirdrop} from "../script/DeployAirdrop.s.sol";
 
 contract AirdropTest is Test {
     Airdrop public airdrop;

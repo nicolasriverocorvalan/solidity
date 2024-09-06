@@ -94,3 +94,6 @@
 [submodule "08-airdrop-and-signatures/lib/murky"]
 	path = 08-airdrop-and-signatures/lib/murky
 	url = https://github.com/dmfxyz/murky
+[submodule "08-airdrop-and-signatures/lib/foundry-devops"]
+	path = 08-airdrop-and-signatures/lib/foundry-devops
+	url = https://github.com/Cyfrin/foundry-devops
