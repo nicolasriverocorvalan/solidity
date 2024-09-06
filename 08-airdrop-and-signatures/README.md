@@ -60,4 +60,3 @@ forge script script/MerkleInputGenerator.s.sol:MerkleInputGenerator -vvvv
 ## generate Merkle tree
 forge script script/GenerateMerkle.s.sol:GenerateMerkle -vvvv
 ```
-
