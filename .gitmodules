@@ -91,3 +91,6 @@
 [submodule "08-airdrop-and-signatures/lib/openzeppelin-contracts"]
 	path = 08-airdrop-and-signatures/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "08-airdrop-and-signatures/lib/murky"]
+	path = 08-airdrop-and-signatures/lib/murky
+	url = https://github.com/dmfxyz/murky

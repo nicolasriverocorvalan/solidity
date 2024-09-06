@@ -49,3 +49,14 @@ Merkle trees are used in `rollups` to verify state changes and transaction order
 
 * [OpenZeppelin MerkleProof library](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/dbb6104ce834628e473d2173bbc9d47f81a9eec3/contracts/utils/cryptography/MerkleProof.sol)
 * [The second preimage attack for Merkle Trees in Solidity](https://www.rareskills.io/post/merkle-tree-second-preimage-attack)
+* [Merkle Generator and Prover in Solidity](https://github.com/dmfxyz/murky)
+
+## Execute
+
+```bash
+## generate Merkle json input
+forge script script/MerkleInputGenerator.s.sol:MerkleInputGenerator -vvvv
+
+## generate Merkle tree
+forge script script/BakeMerkle.s.sol:BakeMerkle -vvvv
+```
