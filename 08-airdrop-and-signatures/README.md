@@ -172,15 +172,14 @@ The public key is an elliptic curve point calculated by multiplying the private 
 
 ### ECDSA Signatures
 
-ECDSA signatures consist of three integers: `v`, `r`, and `s`:
+ECDSA signatures consist of three integers `r`, `s`, and `v`.
 
 1. The message is hashed
-2. A random number `k` (the nonce) is generated.
-3. **Calculating Signature Components**:
-   * `r`: x point on the `secp256k1` curve, resulting from multiplying the nonce `k` by the generator point `G`.
+2. A random number `k` (the `nonce`) is generated.
+3. Calculating signature components:
+   * `r`: `x` point on the `secp256k1` curve, resulting from multiplying the nonce `k` by the generator point `G`.
    * `s`: proof the signer knows the private key, calculated using the nonce `k`, the hash of the message, the private key, and the `r` value.
-   * `v`: indicates the `polarity` (positive or negative y-axis) of the point on the elliptic curve.
-
+   * `v`: indicates the `polarity` (positive or negative `y-axis`) of the point on the elliptic curve.
 
 ### Compute keys
 
