@@ -144,13 +144,13 @@ bytes32 public constant MESSAGE_TYPEHASH = keccak256("Message(uint256 number)");
 bytes32 hashedMessage = keccak256(abi.encode(MESSAGE_TYPEHASH, Message({ number: message })));
 ```
 
-#### Sum up structure of EIP-712 messages
+### EIP-712 sum up
 
 ```bash
 0x19 
 0x01 
 <hash of who verifies this signature, and what the verifier looks like> 
-<hash of signed structured message,and what the signature looks like>
+<hash of signed structured message, and what the signature looks like>
 ```
 
 ## ECDSA
@@ -161,7 +161,7 @@ bytes32 hashedMessage = keccak256(abi.encode(MESSAGE_TYPEHASH, Message({ number:
 
 ### SECP256k1 Curve
 
-The specific curve used in ECDSA in Ethereum is called the `secp256k1 curve`. This curve is particularly significant in the context of Ethereum and other cryptocurrencies because it underpins the security of digital signatures. One notable characteristic of the `secp256k1 curve` is that for every x-coordinate on the curve, there are two valid signatures. This means that if a malicious actor knows one signature, they can compute the second one. This vulnerability is known as `signature malleability`, which can potentially lead to replay attacks where a valid data transmission is maliciously or fraudulently repeated or delayed.
+The specific curve used in `ECDSA` in Ethereum is called the `secp256k1`curve. This curve is particularly significant in the context of Ethereum and other cryptocurrencies because it underpins the security of digital signatures. One notable characteristic of the `secp256k1` curve is that for every `x-coordinate` on the curve, there are two valid signatures. This means that if a malicious actor knows one signature, they can compute the second one. This vulnerability is known as `signature malleability`, which can potentially lead to replay attacks where a valid data transmission is maliciously or fraudulently repeated or delayed.
 
 There are several constants associated with the `SECP 256k1 curve` that are crucial for its operation. One of these is the `Generator Point (G)`, which is a predefined point on the curve used in the generation of public keys. Another important constant is `n`, a prime number that defines the length of the private key. These constants are fundamental to the cryptographic processes that ensure the security and integrity of transactions on the Ethereum network.
 
@@ -172,7 +172,7 @@ The public key is an elliptic curve point calculated by multiplying the private 
 
 ### ECDSA Signatures
 
-Signatures consist of three integers: `v`, `r`, and `s`:
+ECDSA signatures consist of three integers: `v`, `r`, and `s`:
 
 1. The message is hashed
 2. A random number `k` (the nonce) is generated.
