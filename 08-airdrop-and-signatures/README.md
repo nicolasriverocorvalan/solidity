@@ -67,7 +67,7 @@ forge script script/GenerateMerkle.s.sol:GenerateMerkle -vvvv
 
 This is particularly useful for off-chain message signing, such as in the context of airdrops, where users might need to prove their eligibility by signing a message.
 
-### Key Concepts of EIP-191
+### Key concepts of EIP-191
 
 * `Message Prefix:`: `EIP-191` specifies a prefix to distinguish between different types of messages. The prefix helps prevent replay attacks by ensuring that the signed message is unique and context-specific.
 
@@ -95,13 +95,13 @@ This is particularly useful for off-chain message signing, such as in the contex
 
 `EIP-712` provides a standard for signing and verifying typed structured data. It is designed to improve the security and usability of off-chain message signing by providing a clear and `human-readable` format for the data being signed.
 
-### Structure of EIP-712 Messages
+### Structure of EIP-712 messages
 
 * `0x19`: This is a fixed prefix byte that indicates the start of an `EIP-191` message. It helps distinguish `EIP-191` messages from other types of data.
 
 * `0x01`: This byte specifies the version of the message format. In this case, `0x01` indicates that the message follows the `EIP-712` standard for structured data.
 
-* `<domain separator>` -> `<hashStruct(eip712Domain)>`: The domain separator is a unique identifier for the context in which the data is being signed. It includes information such as `the name and version of the DApp, the chain ID, and the contract address`. The domain separator helps prevent replay attacks across different domains.
+* `<domain separator>` -> `<hashStruct(eip712Domain)>`: The domain separator is a unique identifier for the context in which the data is being signed. It includes information such as `the name and version of the DApp, the chain ID, and the contract address`. The domain separator helps prevent `replay attacks` across different domains.
 
 ```bash
 struct EIP712Domain {
@@ -111,12 +111,9 @@ struct EIP712Domain {
     address verifyingContract;
 };
 
-# Type Hash
-bytes32 public constant EIP712DOMAIN_TYPEHASH = keccak256(
-    "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"
-);
+bytes32 public constant EIP712DOMAIN_TYPEHASH = 
+    keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
 
-# Domain separator struct
 eip_domain_separator_struct = EIP712Domain({
     "name": "MyDApp",
     "version": "1",
@@ -124,12 +121,15 @@ eip_domain_separator_struct = EIP712Domain({
     "verifyingContract": address(this)
 });
 
-# Hashing process
-1. Compute the type hash for EIP712Domain
-2. Encode each field of the EIP712Domain structure
-3. Concatenate the type hash and the encoded fields.
-4. Hash the concatenated result to produce the final hash.
-
+i_domain_separator = keccak256(
+    abi.encode(
+        EIP712DOMAIN_TYPEHASH,
+        keccak256(bytes(eip_domain_separator_struct.name)),
+        keccak256(bytes(eip_domain_separator_struct.version)),
+        eip_domain_separator_struct.chainId,
+        eip_domain_separator_struct.verifyingContract
+    )
+);
 ```
 
 * `<hashStruct(message)>`: This is the hash of the structured data being signed. The data is hashed according to the defined types and the `EIP-712` encoding rules.
@@ -144,7 +144,7 @@ bytes32 public constant MESSAGE_TYPEHASH = keccak256("Message(uint256 number)");
 bytes32 hashedMessage = keccak256(abi.encode(MESSAGE_TYPEHASH, Message({ number: message })));
 ```
 
-#### `SUM UP`
+#### Sum up structure of EIP-712 messages
 
 ```bash
 0x19 
