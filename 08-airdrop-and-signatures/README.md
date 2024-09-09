@@ -191,7 +191,7 @@ ECDSA signatures consist of three integers `r`, `s`, and `v`.
 
 ### Compute signature
 
-Signatures are created by combining a hash of a message with the privKey.
+Signatures are created by combining a hash of a `message` with the `privKey`.
 
 1. Using ECDSA algorithm, hash the message using `SHA256`.
 2. Generate a secure random number K, the `nonce`.
@@ -206,7 +206,7 @@ Signatures are created by combining a hash of a message with the privKey.
 
 The addition of `27` is a convention that was adopted to distinguish Ethereum signatures from other ECDSA signatures.
 
-## ECDSA signature verification
+### ECDSA signature verification
 
 1. Input components:
     - message: the original message that was signed.
@@ -223,22 +223,14 @@ The addition of `27` is a convention that was adopted to distinguish Ethereum si
    6. Convert the `x-coordinate` of `R` to an `integer xR`.
    7. Verify that `r` is congruent to `xR modulo n`: `[ r \equiv xR \mod n ]`
 
-Important note: 
-
-***The `s` value in an ECDSA signature must be restricted to ensure security and prevent certain types of attacks, such as `signature malleability`. `s` should be restricted to the lower half of the curve's `order n`. This is known as "canonical" or "normalized" signatures.***
+***Important***: The `s` value in an ECDSA signature must be restricted to ensure security and prevent certain types of attacks, such as `signature malleability`. `s` should be restricted to the lower half of the curve's `order n`. This is known as `canonical` or `normalized` signatures.
 
 ***Using `ecrecover` directly can lead to signature malleability.***
 
-```python
-def restrict_s(s, n):
-    if s > n // 2:
-        s = n - s
-    return s
+## Transaction types
 
-# Example usage
-n = 100000  # Order of the curve
-s = 67890   # Example s value
+### Type 0 (legacy transactions)
 
-restricted_s = restrict_s(s, n)
-print(f"Restricted s: {restricted_s}")
-```
+This is the oldest transaction type, specified when using the `--legacy` flag. It was the first standard Ethereum transaction before the introduction of newer types.
+
+  
