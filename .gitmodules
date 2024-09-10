@@ -10,59 +10,59 @@
 [submodule "foundry/crowdsourcing-app/lib/foundry-devops"]
 	path = foundry/crowdsourcing-app/lib/foundry-devops
 	url = https://github.com/ChainAccelOrg/foundry-devops
-[submodule "3-foundry/2-crowdsourcing-app/lib/foundry-devops"]
-	path = 3-foundry/2-crowdsourcing-app/lib/foundry-devops
+[submodule "foundry/2-crowdsourcing-app/lib/foundry-devops"]
+	path = foundry/2-crowdsourcing-app/lib/foundry-devops
 	url = https://github.com/cyfrin/foundry-devops
-[submodule "3-foundry/2-crowdsourcing-app/lib/chainlink-brownie-contracts"]
-	path = 3-foundry/2-crowdsourcing-app/lib/chainlink-brownie-contracts
+[submodule "foundry/2-crowdsourcing-app/lib/chainlink-brownie-contracts"]
+	path = foundry/2-crowdsourcing-app/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
-[submodule "3-foundry/2-crowdsourcing-app/lib/forge-std"]
-	path = 3-foundry/2-crowdsourcing-app/lib/forge-std
+[submodule "foundry/2-crowdsourcing-app/lib/forge-std"]
+	path = foundry/2-crowdsourcing-app/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "3-foundry/3-lottery/lib/foundry-devops"]
-	path = 3-foundry/3-lottery/lib/foundry-devops
+[submodule "foundry/3-lottery/lib/foundry-devops"]
+	path = foundry/3-lottery/lib/foundry-devops
 	url = https://github.com/Cyfrin/foundry-devops
-[submodule "3-foundry/3-lottery/lib/chainlink-brownie-contracts"]
-	path = 3-foundry/3-lottery/lib/chainlink-brownie-contracts
+[submodule "foundry/3-lottery/lib/chainlink-brownie-contracts"]
+	path = foundry/3-lottery/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
-[submodule "3-foundry/3-lottery/lib/forge-std"]
-	path = 3-foundry/3-lottery/lib/forge-std
+[submodule "foundry/3-lottery/lib/forge-std"]
+	path = foundry/3-lottery/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "3-foundry/3-lottery/lib/solmate"]
-	path = 3-foundry/3-lottery/lib/solmate
+[submodule "foundry/3-lottery/lib/solmate"]
+	path = foundry/3-lottery/lib/solmate
 	url = https://github.com/transmissions11/solmate
-[submodule "4-erc20/lib/forge-std"]
-	path = 4-erc20/lib/forge-std
+[submodule "erc20/lib/forge-std"]
+	path = erc20/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "4-erc20/lib/openzeppelin-contracts"]
-	path = 4-erc20/lib/openzeppelin-contracts
+[submodule "erc20/lib/openzeppelin-contracts"]
+	path = erc20/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
-[submodule "5-nft/lib/forge-std"]
-	path = 5-nft/lib/forge-std
+[submodule "nft/lib/forge-std"]
+	path = nft/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "5-nft/lib/openzeppelin-contracts"]
-	path = 5-nft/lib/openzeppelin-contracts
+[submodule "nft/lib/openzeppelin-contracts"]
+	path = nft/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
-[submodule "5-nft/lib/foundry-devops"]
-	path = 5-nft/lib/foundry-devops
+[submodule "nft/lib/foundry-devops"]
+	path = nft/lib/foundry-devops
 	url = https://github.com/ChainAccelOrg/foundry-devops
-[submodule "6-upgradeable/uups/lib/forge-std"]
-	path = 6-upgradeable/uups/lib/forge-std
+[submodule "upgradeable/uups/lib/forge-std"]
+	path = upgradeable/uups/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "6-upgradeable/uups/lib/openzeppelin-contracts-upgradeable"]
-	path = 6-upgradeable/uups/lib/openzeppelin-contracts-upgradeable
+[submodule "upgradeable/uups/lib/openzeppelin-contracts-upgradeable"]
+	path = upgradeable/uups/lib/openzeppelin-contracts-upgradeable
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable
-[submodule "6-upgradeable/uups/lib/openzeppelin-contracts"]
-	path = 6-upgradeable/uups/lib/openzeppelin-contracts
+[submodule "upgradeable/uups/lib/openzeppelin-contracts"]
+	path = upgradeable/uups/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
-[submodule "6-upgradeable/uups/lib/foundry-devops"]
-	path = 6-upgradeable/uups/lib/foundry-devops
+[submodule "upgradeable/uups/lib/foundry-devops"]
+	path = upgradeable/uups/lib/foundry-devops
 	url = https://github.com/chainaccelorg/foundry-devops
-[submodule "7-dao/lib/forge-std"]
-	path = 7-dao/lib/forge-std
+[submodule "dao/lib/forge-std"]
+	path = dao/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "7-dao/lib/openzeppelin-contracts"]
-	path = 7-dao/lib/openzeppelin-contracts
+[submodule "dao/lib/openzeppelin-contracts"]
+	path = dao/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
 [submodule "arbitrum/lib/forge-std"]
 	path = arbitrum/lib/forge-std
@@ -70,30 +70,33 @@
 [submodule "arbitrum/lib/chainlink-brownie-contracts"]
 	path = arbitrum/lib/chainlink-brownie-contracts
 	url = https://github.com/smartcontractkit/chainlink-brownie-contracts
-[submodule "10-account-abstraction/lib/forge-std"]
-	path = 10-account-abstraction/lib/forge-std
+[submodule "account-abstraction/lib/forge-std"]
+	path = account-abstraction/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "10-account-abstraction/lib/openzeppelin-contracts"]
-	path = 10-account-abstraction/lib/openzeppelin-contracts
+[submodule "account-abstraction/lib/openzeppelin-contracts"]
+	path = account-abstraction/lib/openzeppelin-contracts
 	url = https://github.com/openzeppelin/openzeppelin-contracts
-[submodule "10-account-abstraction/lib/account-abstraction"]
-	path = 10-account-abstraction/lib/account-abstraction
+[submodule "account-abstraction/lib/account-abstraction"]
+	path = account-abstraction/lib/account-abstraction
 	url = https://github.com/eth-infinitism/account-abstraction
-[submodule "10-account-abstraction/lib/foundry-era-contracts"]
-	path = 10-account-abstraction/lib/foundry-era-contracts
+[submodule "account-abstraction/lib/foundry-era-contracts"]
+	path = account-abstraction/lib/foundry-era-contracts
 	url = https://github.com/cyfrin/foundry-era-contracts
-[submodule "10-account-abstraction/lib/foundry-devops"]
-	path = 10-account-abstraction/lib/foundry-devops
+[submodule "account-abstraction/lib/foundry-devops"]
+	path = account-abstraction/lib/foundry-devops
 	url = https://github.com/cyfrin/foundry-devops
-[submodule "08-Airdrop-and-signatures/lib/forge-std"]
-	path = 08-airdrop-and-signatures/lib/forge-std
+[submodule "airdrop-and-signatures/lib/forge-std"]
+	path = airdrop-and-signatures/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
-[submodule "08-airdrop-and-signatures/lib/openzeppelin-contracts"]
-	path = 08-airdrop-and-signatures/lib/openzeppelin-contracts
-	url = https://github.com/openzeppelin/openzeppelin-contracts
-[submodule "08-airdrop-and-signatures/lib/murky"]
-	path = 08-airdrop-and-signatures/lib/murky
+[submodule "airdrop-and-signatures/lib/murky"]
+	path = airdrop-and-signatures/lib/murky
 	url = https://github.com/dmfxyz/murky
-[submodule "08-airdrop-and-signatures/lib/foundry-devops"]
-	path = 08-airdrop-and-signatures/lib/foundry-devops
+[submodule "airdrop-and-signatures/lib/foundry-devops"]
+	path = airdrop-and-signatures/lib/foundry-devops
 	url = https://github.com/Cyfrin/foundry-devops
+[submodule "lib/forge-std"]
+	path = lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+[submodule "airdrop-and-signatures/lib/openzeppelin-contracts"]
+	path = airdrop-and-signatures/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
