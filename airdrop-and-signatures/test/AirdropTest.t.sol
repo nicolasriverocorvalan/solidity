@@ -10,9 +10,9 @@ import {DeployAirdrop} from "../script/DeployAirdrop.s.sol";
 contract AirdropTest is Test {
     Airdrop public airdrop;
     ElBarto public token;
+    address public gasPayer;
     address public userAccount;
     uint256 public userPrivKey;
-    address public gasPayer;
 
     bytes32 public ROOT=0xa3380204c782abb3523e8e685d8c4f3425c3f721593cea2e22dd5bce518de0ba;
     uint256 public AMOUNT= 25 * 1e18;
@@ -24,17 +24,18 @@ contract AirdropTest is Test {
 
     function setUp() public {
         token = new ElBarto();
-        token.mint(token.owner(), AMOUNT_TO_MINT);
         airdrop = new Airdrop(ROOT,token);
+        token.mint(token.owner(), AMOUNT_TO_MINT);
         token.transfer(address(airdrop), AMOUNT_TO_MINT);
+
         (userAccount, userPrivKey) = makeAddrAndKey("user");
-        console.log("User address: ", userAccount); //user address obtained: 0x6CA6d1e2D5347Bfab1d91e883F1915560e09129D
+        console.log("User address: ", userAccount); //user address 0x6CA6d1e2D5347Bfab1d91e883F1915560e09129D
         gasPayer = makeAddr("gasPayer");
     }
 
     function testCanClaim() public {
         uint256 startingBalance = token.balanceOf(userAccount);
-        bytes32 digest = airdrop.getDigest(userAccount, AMOUNT);
+        bytes32 digest = airdrop.getDigest(userAccount, AMOUNT_TO_MINT);
 
         // sign a message
         (uint8 v,bytes32 r,bytes32 s)= vm.sign(userPrivKey, digest);
