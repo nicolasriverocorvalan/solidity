@@ -20,8 +20,6 @@
 * data: what to send to the TO address.
 * v, r, s: components of tx signature.
 
-[Transaction types](https://docs.zksync.io/zk-stack/concepts/transaction-lifecycle#transaction-types)
-
 ## Notes
 * Blockchain Oracle: Any device that interacts with the oof-chain world to provide external data or computation to smart contracts.
 * 1e18 = 1 ETH = 1 * 10 ** 18.
