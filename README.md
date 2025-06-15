@@ -23,7 +23,7 @@
 ## Notes
 * https://eth-converter.com/
 * https://www.evm.codes/
-* Blockchain Oracle: Any device that interacts with the oof-chain world to provide external data or computation to smart contracts.
+* Blockchain Oracle: Any device that interacts with the off-chain world to provide external data or computation to smart contracts.
 * 1e18 = 1 ETH = 1 * 10 ** 18.
 * Library: similar to contracts but you can´t declare any state variable and you can´t send ether. A library is embedded into the contract if all functions are internal.
 * constant: the value has to be constant at compile time and it has to be assigned where the variable is declared.
