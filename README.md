@@ -3,12 +3,12 @@
 ## GAS - Ethereum Improvement Proposals (EIP) 1559
 
 * Transaction Fee: Amount paid to the block producer for processing the transaction.
-  - Gas used * Gas Price   
+  - Gas used * Gas Price (Gwie)
 
 * Gas Price: Cost per unit of gas specified for the transaction, in Ether and Gwei. The higher the gas price the higher chance of getting included in a block.
   - Base fee: the minimum *gas price* you need to set to include your transaction. Ends up getting burnt.
   - Max fee: refers to the maximum gas fee that we are willing to pay for the transaction.
-  - Max priority fee: the max gas fee that we are willing to pay plus the max tip tha we are willing to give to validators.
+  - Max priority fee: the max gas fee that we are willing to pay plus the max tip that we are willing to give to validators.
 * Transaction fee - burnt fee = how much money went to validators.
 
 ## Transactions fields
@@ -21,6 +21,8 @@
 * v, r, s: components of tx signature.
 
 ## Notes
+* https://eth-converter.com/
+* https://www.evm.codes/
 * Blockchain Oracle: Any device that interacts with the oof-chain world to provide external data or computation to smart contracts.
 * 1e18 = 1 ETH = 1 * 10 ** 18.
 * Library: similar to contracts but you can´t declare any state variable and you can´t send ether. A library is embedded into the contract if all functions are internal.
