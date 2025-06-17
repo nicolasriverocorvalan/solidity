@@ -43,3 +43,7 @@
 When you create a library where all of its functions are `internal`, the Solidity compiler acts like a "copy and paste" machine. It takes the library's bytecode and embeds it directly into the bytecode of every contract that uses it.
 If a library has at least one `public` or `external` function, it must be deployed as a separate, standalone entity on the blockchain.
 The most common and elegant way to use a library is with the `using MyLibrary for uint256` directive. This "attaches" the library's functions to a specific data type, making the code clean and object-oriented.
+
+* Three different methods of sending ETH from one account to another: `transfer`, `send`, and `call`. `call` is CURRENT BEST PRACTICE for sending ETH from one contract to another, provided you use security precautions. Because it forwards all gas, it makes your contract vulnerable to re-entrancy attacks if not handled correctly. The standard security pattern is the Checks-Effects-Interactions Pattern combined with a re-entrancy guard.
+
+* `Constant` variables are initialized at compile time, while `immutable` variables are initialized at deployment time.

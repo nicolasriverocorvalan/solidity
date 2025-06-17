@@ -24,7 +24,8 @@
 * https://eth-converter.com/
 * https://www.evm.codes/
 * 1e18 = 1 ETH = 1 * 10 ** 18.
-* 'Receive/Fallback' special functions:
+
+* 'Receive/Fallback' special functions: The `receive` function is specifically designed to handle Ether transfers without data and is automatically invoked when Ether is sent to the contract in a transaction with no call data (msg.data is empty). The `fallback` function is used for handling calls with data or when the `receive` function is not defined. The `fallback` function can also handle Ether transfers with data. 
 ```
     // Explainer from: https://solidity-by-example.org/fallback/
     // Ether is sent to contract
