@@ -19,3 +19,12 @@
   6. Logs
 * In Solidity, `calldata` and `memory` are temporary storage locations for variables during function execution. `calldata` is read-only, used for function inputs that can't be modified. In contrast, `memory` allows for read-write access, letting variables be changed within the function. To modify `calldata` variables, they must first be loaded into `memory`.
 * Most variable types default to `memory` automatically. However, for **strings**, you must specify either `memory` or `calldata` due to the way arrays are handled in memory.
+* `view` and `pure` are special keywords used to declare how a function interacts with the blockchain's state.
+* `view` functions can read from the blockchain state but cannot modify it.
+* `pure` functions cannot even read from the blockchain state, let alone modify it. They operate completely independently, only using their input parameters and local variables.
+* When you override a function from a parent contract:
+    1. Parent function must be virtual: First, the function in the parent contract must be marked with the `virtual` keyword. This explicitly signals that the function is designed to be overridden by child contracts.
+    2. Child function must use override: The function in the child contract must use the `override` keyword. This shows the explicit intention to replace the parent's function.
+* `new` keyword is used specifically for one primary purpose: to create and deploy a new instance of a contract from within another contract.
+* The `payable` keyword is a modifier that allows a function or an address to receive Ether directly into the smart contract.
+* `revert `is a special action that stops execution, undoes all changes to the state, and returns the remaining gas to the caller.

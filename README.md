@@ -1,5 +1,14 @@
 # Solidity Cheat Sheet
 
+## Transactions fields
+* nonce: tx count for the account.
+* gas price: price per unit of gas (in wei).
+* gas limit: max gas that the tx can use.
+* to: address that the tx is sent to.
+* value: amount of wei to send.
+* data: what to send to the TO address.
+* v, r, s: components of tx signature.
+
 ## GAS - Ethereum Improvement Proposals (EIP) 1559
 
 * Transaction Fee: Amount paid to the block producer for processing the transaction.
@@ -10,15 +19,6 @@
   - Max fee: refers to the maximum gas fee that we are willing to pay for the transaction.
   - Max priority fee: the max gas fee that we are willing to pay plus the max tip that we are willing to give to validators.
 * Transaction fee - burnt fee = how much money went to validators.
-
-## Transactions fields
-* nonce: tx count for the account.
-* gas price: price per unit of gas (in wei).
-* gas limit: max gas that the tx can use.
-* to: address that the tx is sent to.
-* value: amount of wei to send.
-* data: what to send to the TO address.
-* v, r, s: components of tx signature.
 
 ## Notes
 * https://eth-converter.com/
