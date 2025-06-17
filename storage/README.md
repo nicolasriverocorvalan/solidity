@@ -47,3 +47,5 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
 * Three different methods of sending ETH from one account to another: `transfer`, `send`, and `call`. `call` is CURRENT BEST PRACTICE for sending ETH from one contract to another, provided you use security precautions. Because it forwards all gas, it makes your contract vulnerable to re-entrancy attacks if not handled correctly. The standard security pattern is the Checks-Effects-Interactions Pattern combined with a re-entrancy guard.
 
 * `Constant` variables are initialized at compile time, while `immutable` variables are initialized at deployment time.
+
+* `Modifiers` allow reusable code to be applied to functions, reducing code duplication and improving readability.
