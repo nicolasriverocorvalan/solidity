@@ -9,6 +9,11 @@
 
 * `Storage variables` are meant to persist between function calls and are only declared at the contract level. Can't be used for new variables inside a function in Solidity.
 * In Solidity, all storage locations are initialized to a default value, which is the byte-representation of zero. This concept applies to mappings as well.
+* Each read operation from persistent storage consumes a substantial amount of gas.
+* The storage area is not a single contiguous block of memory but is organized into numbered "slots," each capable of holding 32 bytes (256 bits) of data. Here's how the allocation works:
+  1. Sequential Order: The compiler processes the state variables declared in your contract from top to bottom.
+  2. Slot Allocation: The first variable declared is assigned to slot 0, the second to slot 1, the third to slot 2, and so on.
+  3. Packing Small Variables: To optimize storage usage and reduce gas costs, Solidity attempts to "pack" multiple smaller variables (any type smaller than 32 bytes, like uint128, uint16, bool, address) into a single 32-byte slot if they are declared sequentially. The packing starts from the right side of the slot (lower-order bytes).
 
 * The `view` keyword is a state mutability specifier in Solidity. It acts as a promise that the function will not alter the state of the blockchain.
 
@@ -51,3 +56,19 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
 * `Modifiers` allow reusable code to be applied to functions, reducing code duplication and improving readability.
 
 * Solidity provides a global variable, `block.chainid`, which returns the unique ID of the blockchain the code is currently executing on.
+
+* The `Arrange-Act-Assert (AAA)` pattern is a widely adopted structure for writing clear, simple, and maintainable tests. It breaks down each test function into three distinct, logical parts.
+
+1. `Arrange`: This is the setup phase. You prepare all the necessary preconditions for your test. This includes:
+   * Deploying contracts.
+   * Setting up initial variables and state (e.g., using vm.deal to give a user an ETH balance).
+   * Creating test users and addresses (e.g., using makeAddr).
+
+2. `Act`: This is the execution phase, and it should ideally be a single line of code. You invoke the specific function or trigger the precise behavior that you want to test. This is the "action" you are verifying.
+
+3. `Assert`: This is the verification phase. After the "Act" has occurred, you check to see if the outcome is what you expected. This involves making one or more assertions, such as:
+    * Checking if a state variable was updated correctly (assertEq).
+    * Verifying that an event was emitted (vm.expectEmit).
+    * Ensuring a balance changed as expected.
+
+* `Chisel` is a key part of the Foundry tool suite that provides an interactive Solidity REPL (Read-Eval-Print Loop). It allows developers to quickly write and test small pieces of Solidity code directly in their terminal without needing to create a full project, contract, or test file
