@@ -1,8 +1,8 @@
-# Foundry cheat codes
+# Foundry Cheatcodes
 
 ### Foundry Cheatcodes Reference
 
-| Category | Cheatcode | Description |
+| Category | Cheatcode / Utility | Description |
 | :--- | :--- | :--- |
 | **State & Environment** | `prank(address)` | Sets `msg.sender` for the **next single call**. |
 | | `startPrank(address)` | Sets `msg.sender` for all subsequent calls until `stopPrank` is called. |
@@ -28,6 +28,7 @@
 | | `clearMockedCalls()` | Clears all previously set mock calls. |
 | **Fuzzer** | `assume(bool)` | Discards fuzzer runs that do not meet a specific condition. |
 | | `label(address,string)` | Assigns a human-readable label to an address in call traces. |
+| **Address Utilities** | `makeAddr(string memory label)` | A utility from `forge-std/Test.sol` that generates a fresh, deterministic address from a string label. |
 | **Forking** | `createFork(string)` | Creates a new fork from an RPC URL and returns its ID. |
 | | `createSelectFork(string)` | Creates and immediately selects a new fork. |
 | | `selectFork(uint256)` | Selects a previously created fork to run tests against. |

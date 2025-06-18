@@ -49,3 +49,5 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
 * `Constant` variables are initialized at compile time, while `immutable` variables are initialized at deployment time.
 
 * `Modifiers` allow reusable code to be applied to functions, reducing code duplication and improving readability.
+
+* Solidity provides a global variable, `block.chainid`, which returns the unique ID of the blockchain the code is currently executing on.
