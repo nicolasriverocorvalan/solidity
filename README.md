@@ -39,6 +39,29 @@
     //  /        \
     //receive()  fallback()
 ```
+
+## EVM Transaction Types
+
+| Type Identifier | Common Name | Defining EIP | Key Features |
+| :--- | :--- | :--- | :--- |
+| **`0x0`** | Legacy Transaction | (Pre-EIP-2718) | The original format. Uses a single `gasPrice` field. |
+| **`0x1`** | Access List Transaction | EIP-2930 | Adds an `accessList` to specify addresses and storage keys the transaction will access, potentially reducing gas costs for complex interactions. Still uses `gasPrice`. |
+| **`0x2`** | EIP-1559 Transaction | EIP-1559 | The modern standard. Replaces `gasPrice` with `maxPriorityFeePerGas` (the tip) and `maxFeePerGas`. The `baseFee` is burned. Also supports `accessList`. |
+| **`0x3`** | Blob Transaction | EIP-4844 | Introduced for Layer 2 rollups (Proto-Danksharding). Adds fields for handling "blobs" of data (`maxFeePerDataGas`, `blobVersionedHashes`) to drastically reduce data-posting costs for L2s. |
+
+## Transaction status
+
+1. `Pending`: This is the initial state after you submit a transaction. It has been successfully broadcast to the network and is waiting in the "mempool" (a memory pool of pending transactions) to be picked up by a validator.
+
+2. `Mined (or Confirmed)`: A validator has included your transaction in a new block, and that block has been successfully added to the blockchain. At this point, the transaction is permanent.
+A mined transaction also has a sub-status: either Success or Failed (Reverted). A failed transaction was still included in a block and you still paid the gas fee, but the contract's code execution failed (e.g., a require statement was not met).
+
+3. `Replaced / Dropped`: This is the other major possibility. This status means your transaction was removed from the mempool without being mined. This typically happens for two reasons:
+   
+    * `Replaced`: You (or your wallet software) submitted a new transaction with the exact same nonce but a higher gas fee. The network recognizes this as an intentional replacement, discards your original, slower transaction from the mempool, and prioritizes the new, more expensive one. This is a common way to "speed up" or "cancel" a stuck transaction.
+
+    * `Dropped`: If your transaction's gas fee is too low to ever be picked up during a period of high network congestion, network nodes may eventually "drop" it from their individual mempools to make space for new, higher-fee transactions. If your transaction is dropped from enough nodes, it effectively disappears from the network without ever being mined or replaced.
+
 ## Order of layout
 
 ### Layout of Contract

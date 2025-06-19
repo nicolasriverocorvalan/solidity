@@ -72,3 +72,21 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
     * Ensuring a balance changed as expected.
 
 * `Chisel` is a key part of the Foundry tool suite that provides an interactive Solidity REPL (Read-Eval-Print Loop). It allows developers to quickly write and test small pieces of Solidity code directly in their terminal without needing to create a full project, contract, or test file
+
+* Two different types of bytecode that are generated during the compilation and deployment process.
+  1. `Initial Bytecode (or Creation Bytecode)`: This is the code that is actually sent in the data field of the deployment transaction. It contains two parts:
+
+  The contract's constructor logic and the code needed to initialize state variables.
+  The Deployed Bytecode itself.
+  This Initial Bytecode is executed only once during the deployment transaction. Its job is to set up the contract's initial state and then return a copy of the Deployed Bytecode. After this one-time execution, the Initial Bytecode is discarded.
+
+  2. `Deployed Bytecode (or Runtime Bytecode)`: This is the code that is returned by the Initial Bytecode. This is the actual code that gets permanently stored at the new smart contract's address on the blockchain. It contains all the function logic (the dispatcher, function bodies, etc.) needed to handle future calls to the contract, but it does not contain the constructor logic.
+
+* `Application Binary Interface (ABI)`: when a smart contract is compiled, a standard interface specification is generated to define how applications can interact with it.
+
+* `bytecode`: The low-level instructions executed by the blockchain's virtual machine.
+
+* The `Arrange-Act-Assert (AAA)` pattern is a simple, three-step structure for writing clean, focused, and easily understandable tests.
+    1. `Arrange`: Set up the scene. Prepare all the necessary preconditions for your test, such as deploying contracts, creating users, and setting initial balances.
+    2. `Act`: Perform the single action. Execute the one specific function or behavior that you are testing.
+    3. `Assert`: Verify the outcome. Check that the action produced the expected result by comparing the final state of the contract against your expectations.
