@@ -92,3 +92,8 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
     3. `Assert`: Verify the outcome. Check that the action produced the expected result by comparing the final state of the contract against your expectations.
 
 * `calldata` contain the function selector (first 4 Bytes) followed by the ABI-encoded arguments for that function.
+
+* The `Checks-Effects-Interactions (CEI)` pattern is a widely recognized best practice primarily designed to mitigate `reentrancy` attacks.
+    1. Checks: first, validate all conditions
+    2. Effects: second, update all internal state variables.
+    3. Interactions: finally, interact with any external contracts or addresses.
