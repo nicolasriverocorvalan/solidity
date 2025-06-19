@@ -90,3 +90,5 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
     1. `Arrange`: Set up the scene. Prepare all the necessary preconditions for your test, such as deploying contracts, creating users, and setting initial balances.
     2. `Act`: Perform the single action. Execute the one specific function or behavior that you are testing.
     3. `Assert`: Verify the outcome. Check that the action produced the expected result by comparing the final state of the contract against your expectations.
+
+* `calldata` contain the function selector (first 4 Bytes) followed by the ABI-encoded arguments for that function.
