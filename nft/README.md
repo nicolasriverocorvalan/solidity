@@ -11,7 +11,9 @@
 * `tokenURI(uint256 tokenId)`: specific metadata and appearance returned for an NFT conforming to the ERC721 standard.
   
 * `abi.encodePacked` function takes multiple arguments of different types (strings, integers, addresses, etc.) and converts them into a sequence of bytes, then concatenates them directly together with `no padding`. The "packed" nature of `abi.encodePacked` makes it ideal for when you want to create a single, tight byte array, like building a URL string.
+*  `abi.encodePacked` removes length information for dynamic types, making it impossible for `abi.decode` to determine where one encoded value ends and the next begins.
 * `abi.encode` pads every argument to a full 32 bytes.
+* `abi.encode()` pads elements to 32 bytes, while `abi.encodePacked()` does not.
 
 * When implementing access control for a function specific to a single NFT (identified by `tokenId`), `ownerOf(tokenId)` and `getApproved(tokenId)` functions are essential for checking authorization.
     1. `ownerOf(tokenId):` The function returns the address of the current owner of the  specified tokenId. Your access control logic would compare this result to `msg.sender` to see if the caller is the owner.
@@ -34,3 +36,14 @@
         * Manually hashing the signature: bytes4(keccak256("functionName(type1,type2,...)"))
         * Using a function's `.selector` property (recommended for type-safety since Solidity 0.8.0+): MyContract.myFunction.selector (if MyContract is an interface or a contract instance with myFunction defined).
   2. ... (variable-length list of arguments): These are the values you want to pass to the function, in the correct order and types as defined by the function's signature.
+* `abi.encodeWithSelector` requires a pre-calculated function selector (bytes4) as its first argument.
+
+* `EVM` It sequentially reads the bytecode, interpreting specific byte sequences as operational codes (opcodes) to perform computations.
+
+* The data payload (or `calldata`) for a low-level function call in the Ethereum Virtual Machine (EVM) is structured as follows:
+    1. `Function Identifier (Selector)`: This is the first 4 bytes of the Keccak-256 hash of the function's signature (e.g., bytes4(keccak256("myFunction(uint256,address)"))). This tells the receiving contract which function to execute.
+    2. `ABI Encoded Function Arguments`: Immediately following the 4-byte function selector, the actual arguments (parameters) for that function are appended. These arguments are encoded according to the Ethereum `Application Binary Interface (ABI)` specification, which defines how data types are packed into a compact binary format.
+
+* `abi.encodeWithSignature` allows encoding calldata for a low-level call using the function's string signature directly, without first manually calculating the selector.
+
+* Using the `cast sig "mintNFT(string)"` command, you obtain the 4-byte function selector for a specific function signature.
