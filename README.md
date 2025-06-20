@@ -9,6 +9,15 @@
 * data: what to send to the TO address.
 * v, r, s: components of tx signature.
 
+## Transactions - contract deployment
+* nonce: tx count for the account.
+* gas price: price per unit of gas (in wei).
+* gas limit: max gas that the tx can use.
+* to: empty.
+* value: amount of wei to send.
+* data: contract init code and contract bytecode.
+* v, r, s: components of tx signature.
+
 ## GAS - Ethereum Improvement Proposals (EIP) 1559
 
 * Transaction Fee: Amount paid to the block producer for processing the transaction.
