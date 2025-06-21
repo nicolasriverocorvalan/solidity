@@ -18,7 +18,7 @@
 
 ### Proxies
 
-* Use delegate call functionality, where te code int the target contract is executed in the context of the calling contract.
+* Use delegate call functionality, where te code int the target contract is executed in the context of the calling contract. Think of delegate call as a call option that allows one contract to borrow a function from another contract.
 * `msg.sender` and `msg.value` do not change their values.
 * The `implementation` contract: which has all our code of our protocol. When we upgrade, we launch a brand new implementation contract.
 * The `proxy` contract: which points to which implementation is the "correct" one, and routes everyone's function calls to that contract.
@@ -76,10 +76,13 @@ Imagine your proxy contract (A) has a state variable uint256 public owner; at st
 * Allows multiple implementation contracts.
 * More granular upgrades.
 
-## Delegate Call vs Call Function
+## Standard Proxy Storage Slots (EIP-1967)
 
-Similar to a call function, 'delegate call' is a fundamental feature of Ethereum. However, they work a bit differently. Think of delegate call as a call option that allows one contract to borrow a function from another contract.
+* `EIP-1967` is an Ethereum Improvement Proposal that standardizes how upgradeable proxy contracts store critical information.
 
 ## Notes
 
-* EIP-1967: Standard Proxy Storage Slots. Standardize where proxies store the address of the logic contract they delegate to, as well as other proxy-specific information.
+* https://solidity-by-example.org/delegatecall/
+* `delegatecall` executes the target contract's code in the caller's context, modifying the caller's storage, while `call` executes in the target's context, modifying the target's storage.
+
+* In many proxy patterns the `fallback` function is commonly used to forward calls with unrecognized function selectors from the proxy to the implementation contract.
