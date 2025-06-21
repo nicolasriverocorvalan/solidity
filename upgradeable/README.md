@@ -56,22 +56,22 @@ Imagine your proxy contract (A) has a state variable uint256 public owner; at st
     4. Itself recognizes `0xabcdef12` as its own `adminWithdrawFunds()` function.
     5. The proxy directly executes `adminWithdrawFunds()` within the proxy's context.
 
-### Transparent Proxy Pattern
+## Proxy implementations
 
+### 1. Transparent Proxy Pattern
+
+* Include the upgrade and admin logic in the proxy itself.
 * Admins can't call implementation contract functions.
 * Users still powerless on admin functions.
 * Admin functions are functions that govern the upgrades.
 
-### Universal Upgradeable Proxies
+### 2. Universal Upgradeable Proxies. Universal Upgradeable Proxy Standard (UUPS)
 
-* AdminOnly Upgrade functions are in the implementation contracts instead of the proxy.
+* The upgrade is handled by the implementation, and can eventually be removed.
+* `AdminOnly upgrade functions` are in the implementation contracts instead of the proxy.
 * Gas saver.
 
-#### Universal Upgradeable Proxy Standard (UUPS)
-
-In UUPS proxies the upgrade is handled by the implementation, and can eventually be removed. Transparent proxies, on the other hand, include the upgrade and admin logic in the proxy itself. This means `TransparentUpgradeableProxy` is more expensive to deploy than what is possible with UUPS proxies.
-
-### Diamond pattern
+### 3. Diamond proxy pattern
 
 * Allows multiple implementation contracts.
 * More granular upgrades.
