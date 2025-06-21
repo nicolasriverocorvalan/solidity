@@ -86,3 +86,5 @@ Imagine your proxy contract (A) has a state variable uint256 public owner; at st
 * `delegatecall` executes the target contract's code in the caller's context, modifying the caller's storage, while `call` executes in the target's context, modifying the target's storage.
 
 * In many proxy patterns the `fallback` function is commonly used to forward calls with unrecognized function selectors from the proxy to the implementation contract.
+
+* When creating a new version of an upgradeable smart contract, a fundamental rule regarding the declaration of state variables to maintain compatibility is: new state variables must only be added at the end, after all previously existing variables.
