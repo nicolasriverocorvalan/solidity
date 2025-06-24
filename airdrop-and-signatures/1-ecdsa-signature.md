@@ -16,42 +16,59 @@ ECDSA could be used for generating key pairs, create signatures or verify signat
 
 ### Structure of EIP-191 messages
 
-* `0x19`: This is a fixed prefix byte that indicates the start of an EIP-191 message. It helps distinguish `EIP-191` messages from other types of data.
+1. `Section 1`: `0x19 (decimal value 25)`: This is a fixed prefix byte that indicates the start of an EIP-191 message. It helps distinguish `EIP-191` messages from other types of data.
 
-* `<1 byte version>`: This byte specifies the version of the message format. Different versions can define different structures for the message.
+2. `Section 2`: `<1 byte version>`: This byte specifies the version of the message format. Different versions can define different structures for the message.
+    a. `0x00`: used for Ethereum signed messages. This version is used for signing arbitrary messages with the Ethereum prefix.
+    b. `0x01`: used for signing structured data as defined in `EIP-712`.
+    c. `0x45`: used for signing arbitrary data without any specific structure (personal sign messages).
 
-    1. `0x00`: used for Ethereum signed messages. This version is used for signing arbitrary messages with the Ethereum prefix.
-   
-    2. `0x01`: used for signing structured data as defined in `EIP-712`.
+3. `Section 3`: `<version specific data>`: This part of the message can vary depending on the version byte.
+    * For version `0x01`, you have to provide the validator address.
+    * For version `0x45`, this section is typically empty or can include additional data specific to the version.
 
-    3. `0x45`: used for signing arbitrary data without any specific structure.
+4. `Section 4`: `<data to sign>`: this is the actual data that needs to be signed. It can be any arbitrary data that the user wants to sign.
 
-* `<version specific data>`: This part of the message can vary depending on the version byte. For version `0x45`, this section is typically empty or can include additional data specific to the version.
-
-* `<data to sign>`: this is the actual data that needs to be signed. It can be any arbitrary data that the user wants to sign.
-
-## EIP-712
+## EIP-712 (Signatures and Verification)
 
 `EIP-712` provides a standard for signing and verifying typed structured data. It is designed to improve the security and usability of off-chain message signing by providing a clear and `human-readable` format for the data being signed.
 
+Structured the data to sign, and also version specific data.
+
 ### Structure of EIP-712 messages
 
-* `0x19`: This is a fixed prefix byte that indicates the start of an `EIP-191` message. It helps distinguish `EIP-191` messages from other types of data.
-
-* `0x01`: This byte specifies the version of the message format. In this case, `0x01` indicates that the message follows the `EIP-712` standard for structured data.
-
-* `<domain separator>` -> `<hashStruct(eip712Domain)>`: The domain separator is a unique identifier for the context in which the data is being signed. It includes information such as `the name and version of the DApp, the chain ID, and the contract address`. The domain separator helps prevent `replay attacks` across different domains.
+`keccak256(0x19 || 0x01 || domainSeparator || messageHash)`
 
 ```bash
-struct EIP712Domain {
-    string name;
-    string version;
-    uint256 chainId;
-    address verifyingContract;
-};
+0x19 
+0x01
+domain separator: hash of who verifies this signature, and what the verifier looks like
+messageHash: hash of the signed structured message, and what the signature looks like
+```
 
-bytes32 public constant EIP712DOMAIN_TYPEHASH = 
-    keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
+1. `Section 1`: `0x19`: This is a fixed prefix byte that indicates the start of an `EIP-191` message. It helps distinguish `EIP-191` messages from other types of data.
+
+2. `Section 2`: `0x01`: This byte specifies the version of the message format. In this case, `0x01` indicates that the message follows the `EIP-712` standard for structured data.
+
+3. `Section 3`: `<domain separator>` -> `<hashStruct(eip712Domain)>`:
+
+The domain separator is a unique `32-byte hash` that identifies the specific context of a signature (e.g., your DApp on a particular network). It is calculated as follows:
+   1. `Start with the blueprint`: take the `EIP712DOMAIN_TYPEHASH`, which is the keccak256 hash of the EIP712Domain struct's definition string. This acts as a unique identifier for the data structure. The typeHash is a keccak256 hash of a string that defines the structure of your message.
+   2. `Gather the data`: you get the specific values for your domain, such as the name, version, chainId, and verifyingContract address.
+   3. `Encode and pack`: create a single, tightly packed byte string using `abi.encode`. The items are encoded in order:
+        1. The `EIP712DOMAIN_TYPEHASH` comes first.
+        2. This is followed by the individual pieces of data from your struct (with `string` and `bytes` values being keccak256 hashed first, as per the EIP-712 standard).
+   4. `Final hash`: compute the keccak256 hash of the entire byte string created in Step 3. This final hash is the domain separator.
+
+```solidity
+struct EIP712Domain {
+    string  name;              // The human-readable name of the signing domain, e.g., "MyDApp"
+    string  version;           // The current version of the signing domain
+    uint256 chainId;           // The EIP-155 chain ID of the network
+    address verifyingContract; // The address of the contract that will verify the signature
+}
+
+bytes32 public constant EIP712DOMAIN_TYPEHASH = keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)");
 
 eip_domain_separator_struct = EIP712Domain({
     "name": "MyDApp",
@@ -60,7 +77,7 @@ eip_domain_separator_struct = EIP712Domain({
     "verifyingContract": address(this)
 });
 
-i_domain_separator = keccak256(
+domain_separator = keccak256(
     abi.encode(
         EIP712DOMAIN_TYPEHASH,
         keccak256(bytes(eip_domain_separator_struct.name)),
@@ -71,23 +88,33 @@ i_domain_separator = keccak256(
 );
 ```
 
-* `<hashStruct(message)>`: This is the hash of the structured data being signed. The data is hashed according to the defined types and the `EIP-712` encoding rules.
+4. `Section 4`: `<hashStruct(message)>`: is the function that turns a human-readable, structured message into a single, unique, and secure 32-byte hash. The primary goal is to create a deterministic fingerprint of the message that is tied to both its data and its structure.
 
-```bash
+`hashStruct(message) = keccak256( abi.encode(messageTypeHash, messageField1, messageField2, ...) )`
+
+```solidity
 struct Message {
-    uint256 number;
-};
+    address from;
+    address to;
+    uint256 amount;
+}
 
-bytes32 public constant MESSAGE_TYPEHASH = keccak256("Message(uint256 number)");
+bytes32 public constant MESSAGE_TYPEHASH = keccak256("Message(address from,address to,uint256 amount)");
 
-bytes32 hashedMessage = keccak256(abi.encode(MESSAGE_TYPEHASH, Message({ number: message })));
+Message memory message_to_sign = Message({
+    from: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8,
+    to: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC,
+    amount: 1000
+});
+
+bytes32 messageHash = keccak256(
+    abi.encode(
+        MESSAGE_TYPEHASH,         // The blueprint's hash
+        message_to_sign.from,     // The actual data for each field
+        message_to_sign.to,
+        message_to_sign.amount
+    )
+);
 ```
 
-### EIP-712 sum up
-
-```bash
-0x19
-0x01
-<hash of the entity verifying this signature, and the verifier details>
-<hash of the signed structured message, and the signature details>
-```
+`Final Hash = keccak256(abi.encodePacked("\x19\x01", domainSeparator, messageHash))`
