@@ -118,3 +118,15 @@ bytes32 messageHash = keccak256(
 ```
 
 `Final Hash = keccak256(abi.encodePacked("\x19\x01", domainSeparator, messageHash))`
+
+## Comparison: EIP-191 vs EIP-712
+
+| Feature               | EIP-191                                                                                       | EIP-712                                                                                                           |
+|-----------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| **Primary Purpose**    | To provide a generic specification for hashing and signing any data on Ethereum.             | To provide a standard for signing typed structured data in a human-readable and secure way.                      |
+| **Data Type**          | Handles arbitrary, unstructured byte strings (`bytes`).                                       | Handles complex data structures with defined types (e.g., `string`, `uint256`, `address`).                       |
+| **User Experience (UX)** | Wallets (like MetaMask) display a hexadecimal string to the user for signing.             | Wallets can parse the structure and display a clear, human-readable table of data fields and values.            |
+| **Security**           | Protects against replay attacks on-chain but can be vulnerable to cross-application replay.  | High. Uses a domain separator to bind signatures to a specific DApp, version, and chain ID.                      |
+| **Structure Format**   | `0x19` + version byte + data                                                                 | Version `0x01` of EIP-191                                 |
+| **Example Use Case**   | "Sign in with Ethereum" using `personal_sign`. Proving ownership of an address.              | ERC-20 `permit`, off-chain governance voting, NFT marketplace bids.                                              |
+| **Relationship**       | Foundational standard.                                                                       | Specific implementation (version `0x01`) of EIP-191.                                                             |
