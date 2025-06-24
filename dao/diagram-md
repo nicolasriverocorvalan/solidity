@@ -1,0 +1,23 @@
+```mermaid
+sequenceDiagram
+    participant User
+    participant MyGovernor
+    participant TimeLock
+    participant "Box"
+
+    Note right of User: Pre-condition: TimeLock is the owner of "Box".
+
+    User->>MyGovernor: propose("Box".address, calldata for store())
+    Note over MyGovernor: Proposal is created and enters voting period.
+    User->>MyGovernor: castVote()
+
+    Note over MyGovernor: After successful vote...
+    MyGovernor->>TimeLock: queue(proposal data)
+    Note over TimeLock: Proposal is queued and `minDelay` starts.
+
+    Note over MyGovernor: After `minDelay`...
+    User->>MyGovernor: execute(proposal)
+    MyGovernor->>TimeLock: execute(proposal)
+    TimeLock->>"Box": store(newNumber)
+    "Box"->>"Box": Updates s_number and emits NumberChanged event
+```
