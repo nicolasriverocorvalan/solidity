@@ -58,14 +58,35 @@ By valuing contribution over capital, Proof of Participation incentivizes a more
 * On chain voting: for example Compound, cost GAS.
 * Off chain voting: replay side transactions in a single transaction to reduce the voting cost, for example send a transaction signed + IPFS + oracle (centralized).
 
-## Notes 
+## Cheat sheet
 
 Exercise requirements:
-
 * We are going to have a contract controlled by DAO.
 * Every transaction that the DAO wants to send has to be voted on.
 * We will use ERC20 tokens for voting (not recommended model).
 
-## Cheat sheet
 * `forge test --mt testCantUpdateBoxWithoutGovernance`
 * `forge test --mt testGovernanceUpdatesBox -vv`
+
+
+## Notes
+
+* `Vote Delegation`: This feature is crucial for healthy decentralized governance. It allows token holders who may not have the time, expertise, or desire to actively research and vote on every proposal to still participate. By delegating, they entrust their voting power to a trusted entity (a delegate) who they believe will vote in their best interest, all while retaining full ownership and control of their actual tokens.
+
+* `ERC20Permit`: This extension implements the EIP-2612 standard. It introduces a permit() function that allows users to approve a spender by signing a message off-chain. This signature can then be relayed to the blockchain by anyone (often the spender themselves), who then pays the gas fee for the approval transaction. This is a key feature for improving user experience by enabling gasless token approvals.
+
+* `Checkpoints (Snapshots)`: The `ERC20Votes` contract (which builds upon the `ERC20Snapshot` logic) works by creating a historical record of token balances. Every time a user's balance changes due to a transfer, a new "checkpoint" or "snapshot" is saved with the block number and the new balance. When a vote occurs, the system doesn't check the current balance; instead, it looks up the user's balance at the specific block height when the proposal was created. This effectively prevents anyone from buying tokens to influence a vote after a proposal is already active.
+
+* `Compound Finance`'s governance system was groundbreaking, and one of its most influential features was allowing COMP token holders to delegate their voting rights to another address without giving up custody of their tokens. This allows for a more fluid and active governance system where passive holders can empower active community members to vote on their behalf. The OpenZeppelin `ERC20Votes` extension directly implements this key concept with its `delegate()` function, making it a standard feature for DAOs built on the framework.
+
+* Here’s a breakdown of the functions in the `proposal lifecycle`:
+    1. `propose`: This function is called at the very beginning to create a new proposal and submit it for consideration.
+    2. `Voting (castVote)`: Once the proposal is active, this function is used by token holders to cast their votes.
+    3. `state`: This is a view function that can be called at any time to check the current status of a proposal (e.g., Pending, Active, Succeeded, Executed).
+    4. `execute`: After a proposal has successfully passed the voting period and any required time delay (from a Timelock), the execute function is called. This is the function that actually carries out the actions described in the proposal, such as calling a function on another contract.
+
+* A quorum is a crucial safeguard in governance systems to ensure that a small group of participants cannot pass proposals when overall voter turnout is low. It establishes a baseline of engagement required for any vote to be considered legitimate.
+
+* `Token-Based Governance`: This model is permissionless and often plutocratic. Anyone can participate by acquiring the governance token, and influence (voting power) is directly proportional to the number of tokens they hold. It's a system where financial stake determines power.
+
+* `Member-List Governance`: This model is permissioned. Participation isn't open; it's restricted to a specific set of pre-approved addresses (e.g., a multisig wallet's owners, a board of directors). Influence is not based on a tradable asset but on being a recognized member, where each member might have equal voting power (1 address, 1 vote) or power assigned by other metrics.
