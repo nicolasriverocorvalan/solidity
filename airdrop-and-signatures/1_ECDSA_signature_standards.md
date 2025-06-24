@@ -130,3 +130,7 @@ bytes32 messageHash = keccak256(
 | **Structure Format**   | `0x19` + version byte + data                                                                 | Version `0x01` of EIP-191                                 |
 | **Example Use Case**   | "Sign in with Ethereum" using `personal_sign`. Proving ownership of an address.              | ERC-20 `permit`, off-chain governance voting, NFT marketplace bids.                                              |
 | **Relationship**       | Foundational standard.                                                                       | Specific implementation (version `0x01`) of EIP-191.                                                             |
+
+## Notes
+
+ * `meta-transaction`: the user's intended action (the "meta" part, or the data about the transaction) is wrapped inside another, standard blockchain transaction that's submitted and paid for by someone else.
