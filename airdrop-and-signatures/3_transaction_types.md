@@ -66,3 +66,12 @@ Type 113 transactions include several fields specific to their operation:
 #### Type 5 (0xFF)
 
 `Type 5` transactions, also known as `Priority Transactions`, allow users to send transactions directly from layer 1 (L1) to layer 2 (L2) in ZK Sync. These transactions are prioritized to ensure timely processing and execution, providing a seamless bridge between the two layers. This capability is crucial for maintaining the efficiency and responsiveness of the ZK Sync network, especially when dealing with high-priority or time-sensitive transactions.
+
+## Notes
+
+* `Tightly Packed Signature`: An ECDSA signature (R + S + V) is typically 65 bytes:
+    - r: 32 bytes
+    - s: 32 bytes
+    - v: 1 byte
+
+    This data is concatenated directly, with no padding, offsets, or length prefixes.
