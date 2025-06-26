@@ -48,7 +48,7 @@ Another important aspect of `type 3` transactions is the `Blob Versioned Hashes`
 
 A notable characteristic of `type 3` transactions is that the blob fee is deducted and burned from the sender's account before the transaction executes. This means that if the transaction fails, the blob fee is not refunded. This mechanism ensures that the costs associated with processing large data structures are covered, regardless of the transaction's outcome.
 
-### Transaction types specific to ZK Sync:
+### Transaction types specific to ***ZK Sync***:
 
 ZK Sync, a layer 2 scaling solution for Ethereum, introduces specific transaction types to enhance its functionality and efficiency. These transaction types are designed to leverage the unique features of ZK Sync, such as zero-knowledge proofs and account abstraction.
 
@@ -65,4 +65,4 @@ Type 113 transactions include several fields specific to their operation:
 
 #### Type 5 (0xFF)
 
-`Type 5` transactions, also known as priority transactions, allow users to send transactions directly from layer 1 (L1) to layer 2 (L2) in ZK Sync. These transactions are prioritized to ensure timely processing and execution, providing a seamless bridge between the two layers. This capability is crucial for maintaining the efficiency and responsiveness of the ZK Sync network, especially when dealing with high-priority or time-sensitive transactions.
+`Type 5` transactions, also known as `Priority Transactions`, allow users to send transactions directly from layer 1 (L1) to layer 2 (L2) in ZK Sync. These transactions are prioritized to ensure timely processing and execution, providing a seamless bridge between the two layers. This capability is crucial for maintaining the efficiency and responsiveness of the ZK Sync network, especially when dealing with high-priority or time-sensitive transactions.

@@ -51,6 +51,8 @@ Merkle trees are used in `rollups` to verify state changes and transaction order
 * [The second preimage attack for Merkle Trees in Solidity](https://www.rareskills.io/post/merkle-tree-second-preimage-attack)
 * [Merkle Generator and Prover in Solidity](https://github.com/dmfxyz/murky)
 
+* When utilizing `ecrecover` in smart contracts for signature verification, the specific return value that must be checked against to prevent a common security vulnerability is the `zero address (0x000...000)`. If a smart contract uses `ecrecover` but does not explicitly check if the returned address is the zero address, an attacker could provide an invalid signature. If the contract then proceeds to use this `address(0)` as if it were a legitimate signer, it could lead to unexpected and potentially catastrophic behavior. For example, if `address(0)` were treated as an "owner" or "authorized user," an attacker could bypass access controls.
+
 ## Execute
 
 ```bash
@@ -60,3 +62,4 @@ forge script script/MerkleInputGenerator.s.sol:MerkleInputGenerator -vvvv
 ## generate Merkle tree
 forge script script/GenerateMerkle.s.sol:GenerateMerkle -vvvv
 ```
+
