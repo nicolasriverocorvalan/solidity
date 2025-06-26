@@ -75,3 +75,5 @@ Type 113 transactions include several fields specific to their operation:
     - v: 1 byte
 
     This data is concatenated directly, with no padding, offsets, or length prefixes.
+
+* `abi.decode` expects data encoded according to the standard ABI specification, which includes padding and length information `not` present in a raw, packed signature.
