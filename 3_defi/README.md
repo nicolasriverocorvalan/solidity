@@ -8,6 +8,8 @@
 
 * `Solidity does not inherently support floating-point numbers`. All calculations in Solidity are performed using integers. To represent decimal values, smart contracts use a convention where token amounts are stored as large integers, with the decimals variable indicating how many decimal places to implicitly "shift" to get the human-readable value. For example, an ERC-20 token with 18 decimals means that 1 token is actually represented as `1 * 10^18` internally.
 
+* In smart contract development, internal or private helper functions are introduced when refactoring features that involve actions performed by one address on behalf of another, to decouple core logic from the transaction sender (`msg.sender`) and allow specifying different source/target addresses.
+
 ## Testing
 
 * `Invariant Testing`: Focuses on properties (invariants) that should always be true, regardless of how the contract interacts or its state changes. It typically involves fuzzing or property-based testing to explore a vast number of interactions and state transitions, asserting that these invariants are never violated. This is crucial for complex smart contract systems where many execution paths exist.
@@ -29,6 +31,8 @@ Overcollateralization is a foundational concept in decentralized finance (DeFi) 
 
 * #### `Liquidation Mechanism`
     When a loan becomes undercollateralized, the protocol needs a mechanism to ensure solvency. This mechanism is called liquidation. Liquidators, who are typically automated bots or other network participants, are incentivized to repay the undercollateralized debt. In return for repaying the debt, they receive a portion of the borrower's collateral, usually at a discount to the market price. This process ensures that the protocol can recover the loaned funds even if the borrower defaults. Without sufficient overcollateralization, the liquidation process would not be effective, as there might not be enough collateral value to cover the debt and incentivize liquidators.
+
+    The primary function of a liquidation mechanism in a collateralized debt protocol is to maintain the protocol's solvency by allowing the removal of undercollateralized positions.
 
 * #### `The Safety Buffer`
     The requirement for the collateral's value to significantly exceed the borrowed amount (e.g., a 150% or 200% collateralization ratio) acts as a safety buffer. This buffer is critical for several reasons:
@@ -95,3 +99,24 @@ Let's apply this to the health factor and the concept of over-collateralization:
     $$ \text{Ratio} = \frac{2}{1} \times 100\% = 200\% $$
 
 Therefore, a `LIQUIDATION_THRESHOLD` of 50 alongside a `LIQUIDATION_PRECISION` of 100 implies a **minimum over-collateralization ratio of 200%** for a user's position to be at the edge of safety (Health Factor = 1). To maintain a truly safe position with a Health Factor comfortably above 1, a user would need to provide collateral worth even more than 200% of their loan.
+
+## When a smart contract needs to burn tokens held by a user to reduce their outstanding debt, what step is typically required *before* the contract can execute the burn operation?
+
+* The user must have previously granted the smart contract an allowance to transfer the specified amount of tokens from their wallet.
+
+This is a fundamental security principle of the ERC-20 token standard on which most DeFi protocols operate. A smart contract cannot arbitrarily take tokens from a user's wallet.
+
+  1. Permission Grant (The `approve` function): For a protocol to use your tokens (e.g., to repay debt), you must first give it permission. You do this by calling the approve() function on the token's contract, specifying the protocol's contract address and the maximum amount of tokens it is allowed to manage on your behalf.
+
+  2. Executing the Action (The `transferFrom` function): Once the allowance is granted, the protocol's smart contract can then call the transferFrom() function. This function moves the specified number of tokens (up to the allowance limit) from your wallet to itself or to a burn address (address(0)), effectively reducing your debt.
+
+Without this prior approval (allowance), any attempt by the smart contract to move your tokens would be rejected by the token contract itself.
+
+## Collateralized Debt Position (CDP)
+
+In a Collateralized Debt Position (CDP) system, your deposited assets act as security for your loan.
+
+* When you want to get some of that security deposit back, you "redeem" it.
+* The `redeemCollateral` function facilitates this process. It allows you to specify an amount of collateral to withdraw.
+* Critically, the function's logic will first calculate if your position will still be safely overcollateralized after the withdrawal. If withdrawing the requested amount would cause your loan's health factor to drop below the safe threshold, the transaction will fail to protect the protocol from risk.
+
