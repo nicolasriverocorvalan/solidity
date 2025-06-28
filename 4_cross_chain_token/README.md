@@ -72,4 +72,3 @@ cast wallet import my_deployer_alias --interactive
 
 forge script MyDeploymentScript --rpc-url <your_rpc_url> --account my_deployer_alias --broadcast
 ```
-
