@@ -119,4 +119,3 @@ In a Collateralized Debt Position (CDP) system, your deposited assets act as sec
 * When you want to get some of that security deposit back, you "redeem" it.
 * The `redeemCollateral` function facilitates this process. It allows you to specify an amount of collateral to withdraw.
 * Critically, the function's logic will first calculate if your position will still be safely overcollateralized after the withdrawal. If withdrawing the requested amount would cause your loan's health factor to drop below the safe threshold, the transaction will fail to protect the protocol from risk.
-
