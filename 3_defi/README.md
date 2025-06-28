@@ -46,18 +46,6 @@
     # Don't fail the entire test if one of the random calls reverts.
     fail_on_revert = false
     ```
-* In stateful fuzz testing with Foundry, what is the primary purpose of using the `bound` cheatcode on input parameters like `amount`?
-
-    To constrain the input values within a specific, valid range for the function being tested.
-
-    ```solidity
-    function test_deposit_validAmount(uint256 amount) public {
-    // Constrain the fuzzed 'amount' to be between 1 and 1,000,000 tokens.
-    // This avoids testing with amount = 0 or a ridiculously large number.
-    vm.bound(amount, 1 ether, 1_000_000 ether);
-
-    // ... rest of the test logic for depositing 'amount' ...
-    ```
 
 * In Foundry fuzz testing, what mechanism allows developers to track state or count occurrences within a Handler contract across multiple function calls?
 

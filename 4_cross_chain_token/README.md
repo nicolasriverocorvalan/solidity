@@ -37,31 +37,7 @@ contract MyToken is ERC20, AccessControl {
 }
 ```
 
-* `vm.warp(uint256 newTimestamp)`
-  - Purpose: This is the most direct and common cheatcode for testing time-dependent logic. It sets block.timestamp to the exact newTimestamp you provide.
-
-    - Use Case: If you want to check the state of your contract at a specific point in the future (e.g., exactly one year from now to check annual interest), you would calculate that future timestamp and use vm.warp() to jump directly to it.
-
-    ```solidity
-    // Go to a specific time in the future
-    uint256 oneYearFromNow = block.timestamp + 365 days;
-    vm.warp(oneYearFromNow);
-
-    // Now, any logic that reads `block.timestamp` will see `oneYearFromNow`.
-    myContract.accrueInterest();
-    ```
-
 * `assertApproxEqAbs(value1, value2, tolerance)` is an assertion cheatcode used to verify that two numbers are almost equal, allowing for a small, acceptable difference between them. The "Abs" stands for Absolute Tolerance.
-
-* `vm.expectRevert(bytes4 selector)`:
-
-    - Purpose: This cheatcode asserts that the revert data is exactly the 4-byte selector and nothing else.
-    - Use Case: It should be used when a function reverts with a custom error that has no arguments, like error `Unauthorized()`;. In this case, the entire revertdata is just the 4-byte selector.
-
-* `vm.expectPartialRevert(bytes4 selector)`:
-
-    - Purpose: This cheatcode asserts that the revert data begins with the specified 4-byte selector but ignores any data that follows.
-    - Use Case: This is the correct tool for when a function reverts with a custom error that has arguments, like `AccessControlUnauthorizedAccount(address account, bytes32 role)`. It allows you to verify the correct error type was triggered without needing to match the specific account and role values.
 
 * The `CCT Standard` is a standard built using `CCIP`, offering developers tools and interfaces to simplify cross-chain token creation.
 
@@ -70,3 +46,7 @@ contract MyToken is ERC20, AccessControl {
     - `Cross-Chain Token (CCT) Standard`: This is a higher-level standard that leverages the power of CCIP. It provides developers with pre-audited smart contracts and a simplified framework (including a "Token Manager" interface) to make new or existing ERC-20 tokens cross-chain compatible. Essentially, CCT is a user-friendly way to "plug into" CCIP for the specific purpose of token transfers.
 
 * `Cross-chain messaging` is the foundational technology that enables smart contracts on one blockchain to communicate and interact with smart contracts on another. This communication isn't limited to just token transfers; it can be any arbitrary data, such as function calls, instructions, or proofs of state. Token bridging is one of the most common applications built on top of this fundamental messaging layer.
+
+* What core mechanism does` Circle's Cross-Chain Transfer Protocol (CCTP)` use to move USDC between blockchains? Burning USDC on the source chain and minting native USDC on the destination chain.
+
+*  How is custom data, such as a user-specific interest rate, passed from the source chain to the destination chain using a custom CCIP token pool? It is ABI-encoded into the `destPoolData` field during `lockOrBurn` and ABI-decoded from the `sourcePoolData` field during `releaseOrMint`.
