@@ -84,3 +84,4 @@
 * `vm.createFork(urlOrAlias)`: Creates a new fork environment in the background from the specified RPC URL (e.g., an Alchemy or Infura URL) or a named alias from your foundry.toml file. It returns a unique uint256 fork ID but `does not` switch the active execution context. Your test continues to run on the current chain until you explicitly switch using `vm.selectFork(forkId)`.
 
 * `vm.makePersistent(address)`:In Foundry multi-fork testing scenarios, it ensures that the specified contract's address, code, and storage are preserved across different forks during test execution.
+

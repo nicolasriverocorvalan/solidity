@@ -50,3 +50,4 @@ contract MyToken is ERC20, AccessControl {
 * What core mechanism does` Circle's Cross-Chain Transfer Protocol (CCTP)` use to move USDC between blockchains? Burning USDC on the source chain and minting native USDC on the destination chain.
 
 *  How is custom data, such as a user-specific interest rate, passed from the source chain to the destination chain using a custom CCIP token pool? It is ABI-encoded into the `destPoolData` field during `lockOrBurn` and ABI-decoded from the `sourcePoolData` field during `releaseOrMint`.
+
