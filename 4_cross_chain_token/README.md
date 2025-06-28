@@ -50,3 +50,26 @@ contract MyToken is ERC20, AccessControl {
 * What core mechanism does` Circle's Cross-Chain Transfer Protocol (CCTP)` use to move USDC between blockchains? Burning USDC on the source chain and minting native USDC on the destination chain.
 
 *  How is custom data, such as a user-specific interest rate, passed from the source chain to the destination chain using a custom CCIP token pool? It is ABI-encoded into the `destPoolData` field during `lockOrBurn` and ABI-decoded from the `sourcePoolData` field during `releaseOrMint`.
+
+* During the execution of complex smart contract tests involving numerous internal calls or deep contract interactions, what type of execution limit might be encountered, often necessitating compiler optimizations or code refactoring? Stack depth limit exceeded.
+
+ The EVM uses a "call stack" to keep track of function calls. Every time a contract calls another contract (or even another function within itself via an external call), a new "frame" is pushed onto this stack. This frame holds the context for that specific call (like the return address and memory). 
+ 
+ To prevent infinite recursion and denial-of-service attacks, the EVM imposes a hard limit on how many frames can be on the stack at one time. This limit is `1024`.
+
+ In complex systems, you might have a chain of calls: Contract A calls B, which calls C, which calls D, and so on. If this chain of calls goes deeper than `1024` levels, the transaction will immediately fail with a "stack too deep" error. This is precisely the scenario described by "numerous internal calls or deep contract interactions."
+
+* In Foundry tests, what does the `--via-ir` flag primarily address when running complex test suites? Potential 'Stack Too Deep' errors by enabling code optimization during compilation.
+
+* When configuring a `TokenPool` contract for cross-chain interaction with another `TokenPool` using CCIP, what information about the *remote* chain and pool is necessary? The remote chain's unique CCIP selector and the encoded address of the remote `TokenPool` contract.
+
+* When preparing a message payload for a CCIP message, how is the recipient's address formatted within the message structure? It is ABI-encoded to ensure a standardized byte representation.
+
+* What method does Foundry offer for securely managing private keys during command-line deployments, avoiding direct exposure in scripts or environment variables? Importing a key into Foundry's encrypted keystore (`cast wallet import`) and referencing it using the `--account` flag.
+
+```bash
+cast wallet import my_deployer_alias --interactive
+
+forge script MyDeploymentScript --rpc-url <your_rpc_url> --account my_deployer_alias --broadcast
+```
+
