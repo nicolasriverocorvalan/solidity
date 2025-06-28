@@ -2,6 +2,8 @@
 
 * https://defillama.com/
 
+* https://docs.soliditylang.org/en/latest/natspec-format.html
+
 * `Exogenous` collateral's value exists independently of the stablecoin itself, while `endogenous` collateral's value is tied to the protocol itself.
 
 * `'healthFactor` is a numerical representation of the user's collateralization level relative to their outstanding stablecoin debt.
@@ -10,6 +12,14 @@
 
 * In smart contract development, internal or private helper functions are introduced when refactoring features that involve actions performed by one address on behalf of another, to decouple core logic from the transaction sender (`msg.sender`) and allow specifying different source/target addresses.
 
+* The piece of data from Chainlink's `latestRoundData` function that is most directly used to check if a price feed update is recent is `the timestamp of when the round was last updated (updatedAt).` Here's how it works in practice:
+
+    - A smart contract calls latestRoundData() to get the latest price information.
+    - It receives several values, including updatedAt, which is a Unix timestamp.
+    - The contract then compares this updatedAt timestamp with the current block's timestamp (block.timestamp).
+    - By calculating the difference (block.timestamp - updatedAt), the contract can determine how much time has passed since the last price update.
+    - If this duration exceeds a predefined threshold (e.g., 1 hour), the contract can consider the data to be stale and reject the transaction or trigger a safety mechanism.
+
 ## Testing
 
 * `Invariant Testing`: Focuses on properties (invariants) that should always be true, regardless of how the contract interacts or its state changes. It typically involves fuzzing or property-based testing to explore a vast number of interactions and state transitions, asserting that these invariants are never violated. This is crucial for complex smart contract systems where many execution paths exist.
@@ -17,6 +27,85 @@
 * `Unit Testing`: Checks individual functions or components in isolation, not necessarily how properties hold across an entire system with various interactions.
 
 * `Integration Testing`: Checks how different parts of a system (or different contracts) work together, but it typically uses predefined sequences of interactions rather than exploring a vast state space for invariant violations.
+
+* What is a likely benefit of configuring a stateful fuzz testing tool to immediately fail a test run if *any* transaction reverts? It helps validate that test sequences, especially guided ones (e.g., using Handlers), are constructed correctly and only perform valid operations.
+
+* `foundry.toml` configuration: The primary way to set the number of fuzz runs for a project is in the foundry.toml file. The correct syntax is indeed to add a [fuzz] section and a runs key, like this:
+  
+    ```bash
+    [fuzz]
+    runs = 1000
+
+    [invariant]
+    # Run 512 different test sequences.
+    runs = 512 
+
+    # In each sequence, make up to 100 function calls.
+    depth = 100 
+
+    # Don't fail the entire test if one of the random calls reverts.
+    fail_on_revert = false
+    ```
+* In stateful fuzz testing with Foundry, what is the primary purpose of using the `bound` cheatcode on input parameters like `amount`?
+
+    To constrain the input values within a specific, valid range for the function being tested.
+
+    ```solidity
+    function test_deposit_validAmount(uint256 amount) public {
+    // Constrain the fuzzed 'amount' to be between 1 and 1,000,000 tokens.
+    // This avoids testing with amount = 0 or a ridiculously large number.
+    vm.bound(amount, 1 ether, 1_000_000 ether);
+
+    // ... rest of the test logic for depositing 'amount' ...
+    ```
+
+* In Foundry fuzz testing, what mechanism allows developers to track state or count occurrences within a Handler contract across multiple function calls?
+
+  1. What they are: Ghost variables are special state variables declared in your test contract (not the Handler) that are made accessible within the Handler contract. They are declared using the `ghost` keyword.
+
+  2. How they work: The test runner "links" the ghost variable in the main test contract to the Handler. This allows the Handler to read and write to this variable, and its value persists across the multiple, random function calls within a single invariant test run.
+
+  3. Primary Purpose: Their main use is to track state, count how many times certain functions were called, or accumulate data about the behavior of the system throughout a fuzzing sequence. This tracked data can then be used in the `invariant_` functions to assert that complex properties hold true.
+
+    ```solidity
+    contract MyInvariantTest is Test {
+        MyContract implementation;
+        Handler handler;
+
+        // Declare a ghost variable to count how many times stake() was called.
+        uint256 public ghost g_stakeCount;
+
+        function setUp() public {
+            implementation = new MyContract();
+            handler = new Handler(implementation);
+            targetContract(address(handler));
+        }
+
+        // The invariant checks if the total staked amount matches our tracked count.
+        function invariant_stakeCountMatches() public view {
+            uint256 totalStakes = implementation.totalStakes();
+            assertEq(totalStakes, g_stakeCount);
+        }
+    }
+
+    contract Handler is DSTest {
+        MyContract contractInstance;
+        
+        // This state variable would be useless as it resets.
+        // uint256 local_stake_count; 
+
+        constructor(MyContract _contractInstance) {
+            contractInstance = _contractInstance;
+        }
+
+        function stake(uint256 amount) public {
+            // ... logic to call the real stake function ...
+            
+            // Update the ghost variable from the parent test contract.
+            MyInvariantTest(address(this)).g_stakeCount++;
+        }
+    }
+    ```
 
 ## Understanding Overcollateralization in DeFi Lending Protocols
 
