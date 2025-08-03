@@ -6,7 +6,7 @@
 
 * `Exogenous` collateral's value exists independently of the stablecoin itself, while `endogenous` collateral's value is tied to the protocol itself.
 
-* `'healthFactor` is a numerical representation of the user's collateralization level relative to their outstanding stablecoin debt.
+* `healthFactor` is a numerical representation of the user's collateralization level relative to their stablecoin debt.
 
 * `Solidity does not inherently support floating-point numbers`. All calculations in Solidity are performed using integers. To represent decimal values, smart contracts use a convention where token amounts are stored as large integers, with the decimals variable indicating how many decimal places to implicitly "shift" to get the human-readable value. For example, an ERC-20 token with 18 decimals means that 1 token is actually represented as `1 * 10^18` internally.
 
