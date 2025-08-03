@@ -1,4 +1,4 @@
-## function visibility specifiers
+## Function visibility specifiers
 
 * `public`: This is the most permissive specifier. A public function can be called from anywhere: internally from within the contract itself, externally from other contracts, and by users making transactions.
 * `private`: This is the most restrictive. A private function can only be called from other functions within the same contract where it is defined. It cannot be called by derived contracts or externally.
