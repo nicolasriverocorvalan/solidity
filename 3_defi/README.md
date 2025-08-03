@@ -14,10 +14,10 @@
 
 * The piece of data from Chainlink's `latestRoundData` function that is most directly used to check if a price feed update is recent is `the timestamp of when the round was last updated (updatedAt).` Here's how it works in practice:
 
-    - A smart contract calls latestRoundData() to get the latest price information.
-    - It receives several values, including updatedAt, which is a Unix timestamp.
-    - The contract then compares this updatedAt timestamp with the current block's timestamp (block.timestamp).
-    - By calculating the difference (block.timestamp - updatedAt), the contract can determine how much time has passed since the last price update.
+    - A smart contract calls `latestRoundData()` to get the latest price information.
+    - It receives several values, including `updatedAt`, which is a Unix timestamp.
+    - The contract then compares this `updatedAt` timestamp with the current block's timestamp (`block.timestamp`).
+    - By calculating the difference (`block.timestamp - updatedAt`), the contract can determine how much time has passed since the last price update.
     - If this duration exceeds a predefined threshold (e.g., 1 hour), the contract can consider the data to be stale and reject the transaction or trigger a safety mechanism.
 
 ## Testing
