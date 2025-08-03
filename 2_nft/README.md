@@ -18,9 +18,9 @@
 
 * When implementing access control for a function specific to a single NFT (identified by `tokenId`), `ownerOf(tokenId)` and `getApproved(tokenId)` functions are essential for checking authorization.
     1. `ownerOf(tokenId):` The function returns the address of the current owner of the  specified tokenId. Your access control logic would compare this result to `msg.sender` to see if the caller is the owner.
-    2. `getApproved(tokenId)`: This function returns the address that has been given a specific, one-time approval for this single tokenId.
+    2. `getApproved(tokenId)`: This function returns the address that has been given a specific one-time approval for this single tokenId.
 
-* To print the value of a Solidity variable to the terminal during the execution of a Foundry test, import `console.sol` from `forge-std` and use the `console.log()` function.
+* For print the value of a Solidity variable to the terminal during the execution of a Foundry test, import `console.sol` from `forge-std` and use the `console.log()` function.
 
 * call vs staticcall:
 
