@@ -36,15 +36,12 @@
   1. bytes4 selector: This is the 4-byte function selector. You typically obtain this by:
         * Manually hashing the signature: bytes4(keccak256("functionName(type1,type2,...)"))
         * Using a function's `.selector` property (recommended for type-safety since Solidity 0.8.0+): MyContract.myFunction.selector (if MyContract is an interface or a contract instance with myFunction defined).
-  2. ... (variable-length list of arguments): These are the values you want to pass to the function, in the correct order and types as defined by the function's signature.
-* `abi.encodeWithSelector` requires a pre-calculated function selector (bytes4) as its first argument.
+  2. variable-length list of arguments: These are the values you want to pass to the function, in the correct order and types as defined by the function's signature.
 
 * `EVM` It sequentially reads the bytecode, interpreting specific byte sequences as operational codes (opcodes) to perform computations.
 
 * The data payload (or `calldata`) for a low-level function call in the Ethereum Virtual Machine (EVM) is structured as follows:
     1. `Function Identifier (Selector)`: This is the first 4 bytes of the Keccak-256 hash of the function's signature (e.g., bytes4(keccak256("myFunction(uint256,address)"))). This tells the receiving contract which function to execute.
     2. `ABI Encoded Function Arguments`: Immediately following the 4-byte function selector, the actual arguments (parameters) for that function are appended. These arguments are encoded according to the Ethereum `Application Binary Interface (ABI)` specification, which defines how data types are packed into a compact binary format.
-
-* `abi.encodeWithSignature` allows encoding calldata for a low-level call using the function's string signature directly, without first manually calculating the selector.
 
 * Using the `cast sig "mintNFT(string)"` command, you obtain the 4-byte function selector for a specific function signature.
