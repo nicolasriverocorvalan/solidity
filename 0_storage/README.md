@@ -76,9 +76,10 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
 * Two different types of bytecode that are generated during the compilation and deployment process.
   1. `Initial Bytecode (or Creation Bytecode)`: This is the code that is actually sent in the data field of the deployment transaction. It contains two parts:
 
-  The contract's constructor logic and the code needed to initialize state variables.
-  The Deployed Bytecode itself.
-  This Initial Bytecode is executed only once during the deployment transaction. Its job is to set up the contract's initial state and then return a copy of the Deployed Bytecode. After this one-time execution, the Initial Bytecode is discarded.
+     - The contract's constructor logic and the code needed to initialize state variables.
+     - The Deployed Bytecode itself.
+
+        This Initial Bytecode is executed only once during the deployment transaction. Its job is to set up the contract's initial state and then return a copy of the Deployed Bytecode. After this one-time execution, the Initial Bytecode is discarded.
 
   2. `Deployed Bytecode (or Runtime Bytecode)`: This is the code that is returned by the Initial Bytecode. This is the actual code that gets permanently stored at the new smart contract's address on the blockchain. It contains all the function logic (the dispatcher, function bodies, etc.) needed to handle future calls to the contract, but it does not contain the constructor logic.
 
