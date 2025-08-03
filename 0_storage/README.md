@@ -57,19 +57,24 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
 
 * Solidity provides a global variable, `block.chainid`, which returns the unique ID of the blockchain the code is currently executing on.
 
+* The `Checks-Effects-Interactions (CEI)` pattern is a widely recognized best practice primarily designed to mitigate `reentrancy` attacks.
+    1. Checks: first, validate all conditions
+    2. Effects: second, update all internal state variables.
+    3. Interactions: finally, interact with any external contracts or addresses.
+
 * The `Arrange-Act-Assert (AAA)` pattern is a widely adopted structure for writing clear, simple, and maintainable tests. It breaks down each test function into three distinct, logical parts.
 
-1. `Arrange`: This is the setup phase. You prepare all the necessary preconditions for your test. This includes:
-   * Deploying contracts.
-   * Setting up initial variables and state (e.g., using vm.deal to give a user an ETH balance).
-   * Creating test users and addresses (e.g., using makeAddr).
+  1. `Arrange`: This is the setup phase. You prepare all the necessary preconditions for your test. This includes:
+     * Deploying contracts.
+     * Setting up initial variables and state (e.g., using vm.deal to give a user an ETH balance).
+     * Creating test users and addresses (e.g., using makeAddr).
 
-2. `Act`: This is the execution phase, and it should ideally be a single line of code. You invoke the specific function or trigger the precise behavior that you want to test. This is the "action" you are verifying.
+  2. `Act`: This is the execution phase, and it should ideally be a single line of code. You invoke the specific function or trigger the precise behavior that you want to test. This is the "action" you are verifying.
 
-3. `Assert`: This is the verification phase. After the "Act" has occurred, you check to see if the outcome is what you expected. This involves making one or more assertions, such as:
-    * Checking if a state variable was updated correctly (assertEq).
-    * Verifying that an event was emitted (vm.expectEmit).
-    * Ensuring a balance changed as expected.
+  3. `Assert`: This is the verification phase. After the "Act" has occurred, you check to see if the outcome is what you expected. This involves making one or more assertions, such as:
+      * Checking if a state variable was updated correctly (assertEq).
+      * Verifying that an event was emitted (vm.expectEmit).
+      * Ensuring a balance changed as expected.
 
 * `Chisel` is a key part of the Foundry tool suite that provides an interactive Solidity REPL (Read-Eval-Print Loop). It allows developers to quickly write and test small pieces of Solidity code directly in their terminal without needing to create a full project, contract, or test file
 
@@ -87,14 +92,4 @@ The most common and elegant way to use a library is with the `using MyLibrary fo
 
 * `bytecode`: The low-level instructions executed by the blockchain's virtual machine.
 
-* The `Arrange-Act-Assert (AAA)` pattern is a simple, three-step structure for writing clean, focused, and easily understandable tests.
-    1. `Arrange`: Set up the scene. Prepare all the necessary preconditions for your test, such as deploying contracts, creating users, and setting initial balances.
-    2. `Act`: Perform the single action. Execute the one specific function or behavior that you are testing.
-    3. `Assert`: Verify the outcome. Check that the action produced the expected result by comparing the final state of the contract against your expectations.
-
 * `calldata` contain the function selector (first 4 Bytes) followed by the ABI-encoded arguments for that function.
-
-* The `Checks-Effects-Interactions (CEI)` pattern is a widely recognized best practice primarily designed to mitigate `reentrancy` attacks.
-    1. Checks: first, validate all conditions
-    2. Effects: second, update all internal state variables.
-    3. Interactions: finally, interact with any external contracts or addresses.
