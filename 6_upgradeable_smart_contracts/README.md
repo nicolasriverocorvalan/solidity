@@ -18,7 +18,7 @@
 
 ### Proxies
 
-* Use delegate call functionality, where te code int the target contract is executed in the context of the calling contract. Think of delegate call as a call option that allows one contract to borrow a function from another contract.
+* Use delegate call functionality, where the code in the target contract is executed in the context of the calling contract. Think of delegate call as a call option that allows one contract to borrow a function from another contract.
 * `msg.sender` and `msg.value` do not change their values.
 * The `implementation` contract: which has all our code of our protocol. When we upgrade, we launch a brand new implementation contract.
 * The `proxy` contract: which points to which implementation is the "correct" one, and routes everyone's function calls to that contract.
