@@ -52,9 +52,8 @@ Imagine your proxy contract (A) has a state variable uint256 public owner; at st
 * Example: a user intends to call `processPayment()` on a proxy contract:
     1. They send a transaction to the proxy with the data corresponding to selector `0xabcdef12`.
     2. The proxy receives the call.
-    3. Instead of falling through to `DELEGATECALL` and executing `processPayment()` in the implementation, the proxy contract 
-    4. Itself recognizes `0xabcdef12` as its own `adminWithdrawFunds()` function.
-    5. The proxy directly executes `adminWithdrawFunds()` within the proxy's context.
+    3. Instead of falling through to `DELEGATECALL` and executing `processPayment()` in the implementation, the proxy contract itself recognizes `0xabcdef12` as its own `adminWithdrawFunds()` function.
+    4. The proxy directly executes `adminWithdrawFunds()` within the proxy's context.
 
 ## Proxy implementations
 
