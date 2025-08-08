@@ -31,10 +31,10 @@ This allows the Merkle Tree verifier to reconstruct a root hash and compare it t
 Hash A  Hash B  Hash C  Hash D
 ```
 
-Proof to verify Hash B:
+`Proof to verify Hash B`. To verify Hash B, a verifier needs three things: the known trusted Root Hash, the data itself (Hash B), and the Merkle proof.
 
-1. Hash A (sibling at the first level)
-2. Hash CD (combined hash of Hash C and Hash D at the second level)
+1. Hash A (the direct sibling of Hash B)
+2. Hash CD (the sibling of the combined Hash AB)
 
 Verification Steps:
 1. Combine Hash B and Hash A to get Hash AB.
