@@ -49,7 +49,7 @@ Imagine your proxy contract (A) has a state variable uint256 public owner; at st
 
 * Due to the nature of hashing (even though Keccak-256 is designed to minimize collisions), it's theoretically possible (though statistically unlikely for random hashes) that functionA also generates the exact same 4-byte functionB selector. Or, more commonly, a malicious or poorly designed implementation contract could intentionally include a function with a selector that clashes with an important proxy function.
 
-* Example:a user intends to call `processPayment()` on a proxy contract:
+* Example a user intends to call `processPayment()` on a proxy contract:
     1. They send a transaction to the proxy with the data corresponding to selector `0xabcdef12`.
     2. The proxy receives the call.
     3. Instead of falling through to `DELEGATECALL` and executing `processPayment()` in the implementation, the proxy contract 
